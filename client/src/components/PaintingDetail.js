@@ -64,7 +64,7 @@ function PaintingDetail(){
                         <div className="description">{painting.materials}</div>
                         <div className="description">{painting.width}" x {painting.height}"</div>
                         <div className="description">
-                            {painting.sold ? "SOLD" : <Link to="/contact">{painting.price}</Link>}
+                            {painting.sold ? "SOLD" : <Link to="/contact">${painting.sale_price}</Link>}
                         </div>
                         <div style={{marginTop:"5px", padding: "10px"}} className="ui grid"> 
                             <Link to="/paintings" className="ui circular icon button small teal" >

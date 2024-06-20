@@ -20,6 +20,7 @@ function PostsList ({user, isAdmin}) {
         title={post.title}
         content={post.content}
         image_url={post.image_url}
+        video_url={post.video_url}
         date_added={post.date_added}
         isAdmin={isAdmin}
         />

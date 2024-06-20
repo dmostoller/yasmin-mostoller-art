@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useUser } from "../context/user";
 import { DropdownMenu, Dropdown, Menu } from 'semantic-ui-react'
+import { useDevice } from "../context/device";
 
 
 function Header({ onLogout}) {
-    const { user } = useUser()
+    const { user } = useUser();
+    const {deviceSize} = useDevice();
 
   function handleLogout() {
     fetch("/logout", {
@@ -13,13 +15,7 @@ function Header({ onLogout}) {
     }).then(() => onLogout());
   }
 
-  const [deviceSize, setDeviceSize] = useState(window.innerWidth);
 
-  useEffect(() => {
-    const resizeW = () => setDeviceSize(window.innerWidth);
-    window.addEventListener("resize", resizeW); // Update the width on resize
-    return () => window.removeEventListener("resize", resizeW);
-  });
 
 // console.log(deviceSize)
    return ( 

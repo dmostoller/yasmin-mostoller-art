@@ -12,7 +12,6 @@ function UploadVideoWidget({onSetVideoUrl}) {
             cloudName: 'ddp2xfpyb',
             uploadPreset: 'yasmin_video',
             multiple: false,  //restrict upload to a single file
-            sources: [ "local", "url"], // restrict the upload sources to URL and local files
         }, function(error, result) { 
             if (!error && result && result.event === "success") {
                 // console.log(result.info);

@@ -28,12 +28,20 @@ import EditPainting from './components/EditPainting.js';
 import EditPost from './components/EditPost.js';
 import EditEvent from './components/EditEvent.js';
 import User from './components/User.js';
+import { useDevice } from './context/device.js';
 
 
 export default function App() {
   const [pageToLoad, setPageToLoad] = useState("homepage")
   const { user, setUser } = useUser()
   const { setIsAdmin } = useAdmin()
+  const {setDeviceSize} = useDevice();
+
+  useEffect(() => {
+    const resizeW = () => setDeviceSize(window.innerWidth);
+    window.addEventListener("resize", resizeW); // Update the width on resize
+    return () => window.removeEventListener("resize", resizeW);
+  });
 
   const navigate = useNavigate();
 
@@ -64,6 +72,8 @@ export default function App() {
     navigate('/')
     toast(`Goodbye, thanks for visiting!`);
   }
+
+
 
   return (
     <div className='ui container'>

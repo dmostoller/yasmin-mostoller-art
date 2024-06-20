@@ -8,7 +8,7 @@ function PaintingsList ({paintings}) {
         id={painting.id} 
         image={painting.image} 
         title={painting.title}
-        price={painting.price}
+        sale_price={painting.sale_price}
         height={painting.height}
         width={painting.width}
         materials={painting.materials}

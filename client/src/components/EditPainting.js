@@ -31,7 +31,7 @@ function EditPainting() {
         height: yup.number().integer()
         .required("Must enter a height")
         .min(0, "Cannot be a negative number"),
-        price: yup.string().required("Must enter an price"),
+        sale_price: yup.string().required("Must enter an price"),
         image: yup.string().required("Must enter an image link"),
         sold: yup.string()
         .required("Must enter True or False")
@@ -45,7 +45,7 @@ function EditPainting() {
         materials:`${painting.materials}`,
         width:`${painting.width}`,
         height:`${painting.height}`,
-        price:`${painting.price}`,
+        sale_price:`${painting.sale_price}`,
         image:`${imageUrl}`,
         sold:`${painting.sold}`,
     },
@@ -104,12 +104,19 @@ function EditPainting() {
                 </div>    
                 <div className="field">
                 <label>Price</label>
-                    <input type="text" name="price" value={formik.values.price} placeholder="Price..." onChange={formik.handleChange}></input>               
-                    {formik.errors && <p style={{color:'red', textAlign:'center'}}>{formik.errors.price}</p>}
+                    <input type="text" name="sale_price" value={formik.values.sale_price} placeholder="Price..." onChange={formik.handleChange}></input>               
+                    {formik.errors && <p style={{color:'red', textAlign:'center'}}>{formik.errors.sale_price}</p>}
                 </div>       
                 <div className="field">
-                    <label for="sold">Is the painting already sold?</label>
-                    <input type="text" name="sold" value={formik.values.sold} placeholder="True or False..." onChange={formik.handleChange}></input>               
+                    {/* <input type="text" name="sold" value={formik.values.sold} placeholder="True or False..." onChange={formik.handleChange}></input>  */}
+                    <select className="ui selection dropdown"
+                        name="sold"
+                        style={{padding: "5px"}}
+                        onChange={formik.handleChange}
+                        value={formik.values.sold}>
+                        <option value="false">For Sale </option>
+                        <option value="true">Sold</option>
+                    </select>              
                     {formik.errors && <p style={{color:'red', textAlign:'center'}}>{formik.errors.sold}</p>}
                 </div>
                 <div className="field">

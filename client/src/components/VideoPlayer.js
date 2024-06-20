@@ -1,27 +1,31 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
+import cloudinary from 'cloudinary-video-player';
+import "cloudinary-video-player/cld-video-player.min.css";
 
 function VideoPlayer ({videoUrl}) {
-    // const videoUrl = 'IMG_0_ovyfcf'
-    const cloudName = 'ddp2xfpyb'
-    const url = `https://player.cloudinary.com/embed/?public_id=${videoUrl}&cloud_name=${cloudName}&player%5Bfluid%5D=true&player%5Bcontrols%5D=true&source%5Bsource_types%5D%5B0%5D=mp4`;
+  
+    const cloudinaryRef = useRef();
+    const videoRef = useRef();
+
+    useEffect(() => {
+      if (cloudinaryRef.current) return;
+      cloudinaryRef.current = window.cloudinary;
+      cloudinaryRef.current.videoPlayer(videoRef.current, {
+        cloudName: 'ddp2xfpyb'
+      })
+    }, []);
 
     return ( 
+      <>
+          <video
+            ref={videoRef}
+            data-cld-public-id={videoUrl}
+            width='460'
+            className="cld-video-player cld-fluid"
+            controls
+          />
 
-        <div 
-        className="iframe-container"
-        >
-        <iframe 
-        className="responsive-iframe"
-          title="Cloudinary Player"
-          src={url}
-          width="640"   
-          height="480"
-          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-          allowFullScreen
-          frameBorder="0"
-        ></iframe>
-        </div>
-
+        </>
     );
 }
 
