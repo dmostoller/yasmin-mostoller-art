@@ -20,7 +20,6 @@ function VideoPlayer ({videoUrl}) {
           <video
             ref={videoRef}
             data-cld-public-id={videoUrl}
-            width='460'
             className="cld-video-player cld-fluid"
             controls
           />

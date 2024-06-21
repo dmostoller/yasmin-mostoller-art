@@ -8,25 +8,17 @@ export default function Post ({id, title, content, image_url, video_url, date_ad
     const {deviceSize} = useDevice();
     // console.log(video_url)
     return (
-        <div className="ui container fluid">
-            <div className="ui horizontal card fluid" style={{marginBottom: "15px"}}>
+
+            <div className="ui card" style={{marginBottom: "15px"}}>
                     {(image_url !== "undefined") && (image_url !== null) && (image_url !== "null") &&
-                    <div className="item">
+                    <div className="image">
                         <img className="ui large image" src={image_url} alt={title} ></img>
                     </div>
                     }
 
-                    {(video_url !== "undefined" && video_url !== null && video_url !== "null") && 
-                        <div className="item">
-                            {(deviceSize > 768 ) ?
-                            <div className="ui large image">
+                    {(video_url !== "undefined" && video_url !== null && video_url !== "null") &&     
+                        <div className="image">
                             <VideoPlayer videoUrl={video_url} />
-                            </div>
-                            :
-                            <div style={{width: "90vw"}}>
-                            <VideoPlayer videoUrl={video_url} />
-                            </div>
-                            }
                         </div>
                     }
 
@@ -40,6 +32,5 @@ export default function Post ({id, title, content, image_url, video_url, date_ad
                     </div>
                 </div>
             </div>
-        </div>
     );
 }

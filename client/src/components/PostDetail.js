@@ -59,12 +59,10 @@ function PostDetail(){
 
     return (
         <div className="ui container" style={{minHeight:"100vh"}}>
-            <div style={{width: "100%", margin: "auto"}} className="ui horizontal card">
+            <div style={{width: "100%", margin: "auto"}} className="ui centered card">
                 {(post.image_url !== "undefined") && (post.image_url !== null) && (post.image_url !== "null") && 
-                    <div className="item">
+                    <div className="image">
                         <img src={post.image_url} 
-                        className="ui large image"  
-                        // style={{minWidth: "400px"}}
                         onClick={handleOpen}  
                         alt={post.title}>
                         </img>
@@ -78,16 +76,8 @@ function PostDetail(){
                     </div>
                 }
                 {(videoUrl !== "undefined") && (videoUrl !== null) && (videoUrl !== "null") && (videoUrl !== undefined) && 
-                    <div className="item">
-                        {(deviceSize > 768 ) ?
-                            <div className="ui large image">
+                    <div className="image">
                             <VideoPlayer videoUrl={videoUrl} />
-                            </div>
-                            :
-                            <div style={{width: "90vw"}}>
-                            <VideoPlayer videoUrl={videoUrl} />
-                            </div>
-                        }
                     </div>
                 }
                 <div className="content">
