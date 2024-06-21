@@ -40,7 +40,7 @@ function PostsList ({user, isAdmin}) {
             </div>
         }
             <div className="ui grid">
-                <div className="ui centered stackable two link cards">
+                <div className="ui centered stackable three link cards">
                     {blog}
                 </div>
             </div> 
