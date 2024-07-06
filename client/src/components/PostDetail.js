@@ -53,9 +53,7 @@ function PostDetail(){
         }
     }
     
-    // console.log(image)
-    // console.log(video)
-    console.log(videoUrl)
+    // console.log(videoUrl)
 
     return (
         <div className="ui container" style={{minHeight:"100vh"}}>
