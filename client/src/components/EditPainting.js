@@ -23,18 +23,18 @@ function EditPainting() {
     }, [id]);
 
     const formSchema = yup.object().shape({
-        title: yup.string().required("Must enter a title"),
-        materials: yup.string().required("Must enter materials used"),
+        title: yup.string().required("Please enter a title"),
+        materials: yup.string().required("Please enter materials used"),
         width: yup.number().integer()
-        .required("Must enter a width")
-        .min(0, "Cannot be a negative number"),
+        .required("Please enter a width")
+        .min(0, "Width cannot be a negative number"),
         height: yup.number().integer()
-        .required("Must enter a height")
-        .min(0, "Cannot be a negative number"),
-        sale_price: yup.string().required("Must enter an price"),
-        image: yup.string().required("Must enter an image link"),
+        .required("Please enter a height")
+        .min(0, "Height cannot be a negative number"),
+        sale_price: yup.string().required("Please enter an price"),
+        image: yup.string().required("Please enter an image link"),
         sold: yup.string()
-        .required("Must enter True or False")
+        .required("Please enter True or False")
     })
     // const initValues = painting
     

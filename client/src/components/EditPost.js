@@ -28,9 +28,9 @@ function EditPost() {
 
     const formSchema = yup.object().shape({
         title: yup.string()
-            .required("Must enter a title")
-            .min(2, 'name must be more than two characters'),
-        content: yup.string().required("Must enter content for your post"),
+            .required("Please enter a title")
+            .min(2, 'Name must be more than two characters long'),
+        content: yup.string().required("Please enter content for your post"),
       })
     
     // const initValues = post

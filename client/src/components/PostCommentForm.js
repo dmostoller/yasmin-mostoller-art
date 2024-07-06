@@ -6,7 +6,7 @@ function PostCommentForm({onAddComment, postId, onChangeIsComFormVis, user}){
     const [error, setError] = useState(null);
 
     const formSchema = yup.object().shape({
-        comment: yup.string().required("Must enter a comment"),
+        comment: yup.string().required("Please enter a comment"),
       })
 
     const formik = useFormik({

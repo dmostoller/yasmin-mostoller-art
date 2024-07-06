@@ -25,13 +25,13 @@ function EditEvent() {
 
 
     const formSchema = yup.object().shape({
-        name: yup.string().required("Must enter a title"),
-        venue: yup.string().required("Must enter a venue"),
-        location: yup.string().required("Must enter a location"),
-        details: yup.string().required("Must enter event details"),
-        image_url: yup.string().required("Must enter an image link"),
-        event_date: yup.date().required("Must enter a date"),
-        event_link: yup.string().required("Must enter an event link"),
+        name: yup.string().required("Please enter a title"),
+        venue: yup.string().required("Please enter a venue"),
+        location: yup.string().required("Please enter a location"),
+        details: yup.string().required("Please enter event details"),
+        image_url: yup.string().required("Please enter an image link"),
+        event_date: yup.date().required("Please enter a date"),
+        event_link: yup.string().required("Please enter an event link"),
     })
     // const initValues = event 
 

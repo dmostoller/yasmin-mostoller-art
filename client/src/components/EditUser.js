@@ -14,8 +14,8 @@ export default function EditUser ({setShowEdit}) {
     const formSchema = yup.object().shape({
         username: yup.string()
             .required("Username is required")
-            .min(2, 'Username must be more than two characters')
-            .max(100, 'Name must not be more than 100 characters')
+            .min(2, 'Username must be more than two characters long')
+            .max(50, 'Name must not be more than 50 characters long')
             .required("Username is required"),
         password: yup.string()
             .min(4, 'Password must be at least 4 characters')
@@ -25,7 +25,7 @@ export default function EditUser ({setShowEdit}) {
             .required("Confirm password is required"),
         email: yup.string()
         .required("Email is required")
-        .email("Must be a valid email address")
+        .email("Please enter a valid email address")
       })
     
     const initValues = user

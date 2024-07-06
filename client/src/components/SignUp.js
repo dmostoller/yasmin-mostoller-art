@@ -17,7 +17,7 @@ function SignUp() {
   const formSchema = yup.object().shape({
     username: yup.string()
     .min(2, 'Name must be minimum 2 characters')
-    .max(100, 'Name must not be more than 100 characters')
+    .max(50, 'Name must not be more than 50 characters')
     .required("Username is required"),
     password: yup.string()
     .min(4, 'Password must be at least 4 characters')
@@ -26,7 +26,7 @@ function SignUp() {
     .oneOf([yup.ref('password')], 'Passwords must match')
     .required("Confirm password is required"),
     email: yup.string().email()
-    .required("Must enter an email address"),
+    .required("Email address is required"),
 })
 const formik = useFormik({
   initialValues: {
