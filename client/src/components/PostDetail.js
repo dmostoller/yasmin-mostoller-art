@@ -17,8 +17,8 @@ function PostDetail(){
     const {id} = useParams();
     const navigate = useNavigate();
     const [modalOpen, setModalOpen] = useState(false);
-    const [videoUrl, setVideoUrl] = useState();
-    const [imageUrl, setImageUrl] = useState();
+    const [videoUrl, setVideoUrl] = useState(null);
+    const [imageUrl, setImageUrl] = useState(null);
 
 
 
@@ -75,7 +75,7 @@ function PostDetail(){
                 }
                 {(videoUrl !== "undefined") && (videoUrl !== null) && (videoUrl !== "null") && (videoUrl !== undefined) && 
                     <div className="image">
-                            <VideoPlayer videoUrl={videoUrl} />
+                        <VideoPlayer videoUrl={videoUrl} />
                     </div>
                 }
                 <div className="content">

@@ -75,7 +75,7 @@ function EditEvent() {
             <div className="field">
                     <label>Upload image, then enter event info...<Link style={{float:"right"}} to={`/events`}>  Back to Events</Link></label>
                     <UploadWidget onSetImageUrl={setImageUrl}/>
-                    <img className="ui circular centered image small" src={imageUrl} style={{marginTop: "10px"}} alt=""></img>
+                    <img className="ui rounded centered image medium" src={imageUrl} style={{marginTop: "10px"}} alt=""></img>
                     <input style={{visibility: "hidden"}} type="text"  name="image_url" value={formik.values.image_url} placeholder="Image link..." onChange={formik.handleChange}></input>                
                     {formik.errors && <p style={{color:'red', textAlign:'center'}}>{formik.errors.image_url}</p>}
                 </div> 

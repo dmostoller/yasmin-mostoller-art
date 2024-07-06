@@ -9,8 +9,8 @@ import VideoPlayer from "./VideoPlayer";
 function AddPost() {
     const navigate = useNavigate();
     const [error, setError] = useState(null);
-    const [imageUrl, setImageUrl] = useState();
-    const [videoUrl, setVideoUrl] = useState();
+    const [imageUrl, setImageUrl] = useState(null);
+    const [videoUrl, setVideoUrl] = useState(null);
 
 
     const formSchema = yup.object().shape({
@@ -59,10 +59,12 @@ function AddPost() {
                     <UploadWidget onSetImageUrl={setImageUrl}/>
                     <UploadVideoWidget onSetVideoUrl={setVideoUrl}/>
                     {imageUrl && 
-                        <img className="ui circular centered image small" src={imageUrl} alt=""></img>
+                        <img className="ui rounded centered image medium" src={imageUrl} alt=""></img>
                     }
-                    {videoUrl &&
+                    {(videoUrl !== "undefined" && videoUrl !== null && videoUrl !== "null") &&
+                      <div className="image">
                         <VideoPlayer videoUrl={videoUrl} />
+                      </div>
                     }
                     <input type="text" style={{visibility: "hidden"}} name="image_url" value={formik.values.image_url} onChange={formik.handleChange}></input>
                     <input type="text" style={{visibility: "hidden"}} name="video_url" value={formik.values.video_url} onChange={formik.handleChange}></input>                              

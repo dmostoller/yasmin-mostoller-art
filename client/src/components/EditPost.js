@@ -11,8 +11,8 @@ function EditPost() {
     const [error, setError] = useState(null);
     const [post, setPost] = useState({})
     const {id} = useParams();
-    const [imageUrl, setImageUrl] = useState();
-    const [videoUrl, setVideoUrl] = useState();
+    const [imageUrl, setImageUrl] = useState(null);
+    const [videoUrl, setVideoUrl] = useState(null);
 
 
 
@@ -61,7 +61,7 @@ function EditPost() {
           })
         },
       })
-
+// console.log(videoUrl)
     return (
         <>
         {error && <h2 style={{color:'red', textAlign:'center'}}> {error} </h2>}
@@ -73,10 +73,12 @@ function EditPost() {
                     <UploadWidget onSetImageUrl={setImageUrl}/>
                     <UploadVideoWidget onSetVideoUrl={setVideoUrl}/>
                     {imageUrl && 
-                        <img className="ui circular centered image small" src={imageUrl} alt=""></img>
+                        <img className="ui rounded centered image medium" src={imageUrl} alt=""></img>
                     }
-                    {videoUrl &&
+                    {(videoUrl !== "undefined" && videoUrl !== null && videoUrl !== "null") &&
+                      <div className="image">
                         <VideoPlayer videoUrl={videoUrl} />
+                      </div>
                     }
                     <input type="text" style={{visibility: "hidden"}} name="image_url" value={formik.values.image_url} placeholder="Image link..." onChange={formik.handleChange}></input>
                     <input type="text" style={{visibility: "hidden"}} name="video_url" value={formik.values.video_url} placeholder="Video link..." onChange={formik.handleChange}></input>                              

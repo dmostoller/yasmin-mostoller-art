@@ -15,8 +15,6 @@ function Header({ onLogout}) {
     }).then(() => onLogout());
   }
 
-
-
 // console.log(deviceSize)
    return ( 
     <Menu className='ui top fixed menu'>

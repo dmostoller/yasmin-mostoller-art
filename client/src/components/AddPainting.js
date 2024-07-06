@@ -64,7 +64,7 @@ function AddPainting() {
                 <div className="field">
                     <label>Upload image then enter painting info...<Link style={{float: "right"}} to="/paintings">  Back to Paintings Page</Link></label>
                     <UploadWidget onSetImageUrl={setImageUrl}/>
-                    <img className="ui circular centered image small" src={imageUrl} style={{marginTop: "10px"}} alt=""></img>
+                    <img className="ui rounded centered image medium" src={imageUrl} style={{marginTop: "10px"}} alt=""></img>
                     <input type="text" style={{visibility: "hidden"}} name="image" value={formik.values.image} placeholder="Image link..." onChange={formik.handleChange}></input>               
                     {formik.errors && <p style={{color:'red', textAlign:'center'}}>{formik.errors.image}</p>}
                 </div>   
