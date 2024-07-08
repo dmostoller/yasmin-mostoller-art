@@ -12,7 +12,7 @@ function UploadWidget({onSetImageUrl}) {
             cloudName: 'ddp2xfpyb',
             uploadPreset: 'upload_yasmin',
             multiple: false,  //restrict upload to a single file
-            sources: [ "local", "url"], // restrict the upload sources to URL and local files
+            // sources: [ "local", "url"],
         }, function(error, result) { 
             if (!error && result && result.event === "success") {
                 // console.log(result.info);
