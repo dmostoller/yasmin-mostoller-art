@@ -30,7 +30,7 @@ function PostsList ({user, isAdmin}) {
         <div className="ui container fluid">
         <h2 className="ui dividing header" style={{textAlign: "left", padding: "10px"}}>My Blog</h2>    
         {(user && isAdmin) &&
-            <div style={{paddingBottom:"25px", textAlign:"right"}} className="ui container">   
+            <div className="ui container">   
                 <Link to={`/posts/new`} className="ui circular animated fade icon button fluid teal small" tabindex="0">
                     <div className="visible content"><i className="plus icon"></i></div>
                     <div className="hidden content">
@@ -39,7 +39,7 @@ function PostsList ({user, isAdmin}) {
                 </Link>
             </div>
         }
-            <div className="ui centered grid">
+            <div className="ui centered grid" style={{marginTop: "25px"}}>
                 <div className="ui centered stackable three link cards">
                     {blog}
                 </div>
