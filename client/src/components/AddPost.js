@@ -59,7 +59,7 @@ function AddPost() {
                     <UploadWidget onSetImageUrl={setImageUrl}/>
                     <UploadVideoWidget onSetVideoUrl={setVideoUrl}/>
                     {imageUrl && 
-                        <img className="ui rounded centered image medium" src={imageUrl} alt=""></img>
+                        <img style={{marginTop: "5px"}} className="ui rounded centered image medium" src={imageUrl} alt=""></img>
                     }
                     {(videoUrl !== "undefined" && videoUrl !== null && videoUrl !== "null") &&
                       <div className="image">

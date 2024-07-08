@@ -21,7 +21,7 @@ function AddPainting() {
         sale_price: yup.string().required("Please enter an price"),
         image: yup.string().required("Please enter an image link"),
         sold: yup.string()
-        .required("Please enter True or False")
+        .required("Please select a value")
     })
     const formik = useFormik({
         enableReinitialize: true, 

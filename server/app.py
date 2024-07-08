@@ -131,7 +131,7 @@ class Paintings(Resource):
 
     def post(self):
         try:
-            sold_response = eval(request.get_json()["sold"])
+            sold_response = eval(request.get_json()["sold"].title())
             form_json = request.get_json()
             new_painting = Painting(
                 title=form_json["title"],

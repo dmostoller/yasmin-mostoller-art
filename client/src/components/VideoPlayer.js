@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from "react";
-import cloudinary from 'cloudinary-video-player';
-import "cloudinary-video-player/cld-video-player.min.css";
+// import cloudinary from 'cloudinary-video-player';
+// import "cloudinary-video-player/cld-video-player.min.css";
 
 function VideoPlayer ({videoUrl}) {
   
