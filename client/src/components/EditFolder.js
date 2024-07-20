@@ -26,9 +26,9 @@ export default function EditFolder({name, id, setFolderName, onToggleEdit, onUpd
         body: JSON.stringify(values),
       }).then((r) => {
         if (r.ok) {
-          r.json().then(newFolder => {
-            setFolderName(newFolder.name)
-            onUpdateFolders(id, newFolder)
+          r.json().then(updatedFolder => {
+            setFolderName(updatedFolder.name)
+            onUpdateFolders(id, updatedFolder)
             formik.resetForm()
             onToggleEdit()
             // toast.dark('Recipient added succesfully');

@@ -6,6 +6,9 @@ import { useUser } from "../context/user";
 import { useAdmin } from "../context/admin.js"
 import { Modal } from "semantic-ui-react";
 import PaintingModal from "./PaintingModal";
+import { Watermark } from '@hirohe/react-watermark';
+
+
 
 function PaintingDetail(){
     const { user } = useUser()
@@ -30,7 +33,6 @@ function PaintingDetail(){
     }, [id]);
 
     
-
     const handleDeletePainting = (e) => {
         if (window.confirm("Are you sure you want to delete this painting?")) {
         fetch(`/painting/${id}`, {
@@ -40,19 +42,29 @@ function PaintingDetail(){
                 navigate('/paintings') 
             })
         }
-    }    
+    }   
+
+
     return (
         <div className="ui container">
             <div className="ui horizontal card fluid">
 
                 <div className="item">
                     <div className="image">
+                    <Watermark 
+                        // textColor="#FFFFFF"
+                        opacity={0.5}
+                        gutter={20}
+                        text="© Yasmin Mostoller">
+                        <div>
                         <img className="ui large image" 
-                        src={painting.image} 
-                        alt={painting.title} 
-                        onClick={handleOpen} 
-                        style={{borderRadius:"5px"}}>
-                        </img>
+                            src={painting.image} 
+                            alt={painting.title} 
+                            onClick={handleOpen} 
+                            style={{borderRadius:"5px"}}>
+                            </img>
+                        </div>
+                    </Watermark>
                         <Modal
                             open={modalOpen}
                             onClose={handleClose}

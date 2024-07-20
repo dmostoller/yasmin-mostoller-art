@@ -8,13 +8,15 @@ export default function Folder ({id, name, onDeleteFolder, onUpdateFolders}) {
     const [folderName, setFolderName] = useState(name)
     
     const handleDeleteFolder = (e) => {
+        if (window.confirm("Are you sure you want to delete this folder?")) {
         fetch(`/folder/${id}`,{
           method:"DELETE"
         })
         .then(() => {
           onDeleteFolder(id)
         })
-    }
+    }}
+    
     function toggleEdit (){
         setShowEdit(prevVal => !prevVal)
     }

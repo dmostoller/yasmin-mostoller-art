@@ -427,7 +427,7 @@ class FoldersById(Resource):
     def delete(self, id):
         folder = Folder.query.filter_by(id=id).first()
         if not folder:
-            abort(404, "The comment was not found")
+            abort(404, "The folder was not found")
         db.session.delete(folder)
         db.session.commit()
         response = make_response("", 204)
@@ -444,7 +444,7 @@ class FoldersById(Resource):
             except ValueError:
                 response = make_response({"errors": ["validation errors"]}, 400)
         else:
-            response = make_response({"error": "Event not found"}, 404)
+            response = make_response({"error": "Folder not found"}, 404)
         return response
 
 
