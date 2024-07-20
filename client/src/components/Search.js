@@ -1,12 +1,19 @@
 import React from "react";
 import { Radio } from 'semantic-ui-react'
+import { useFolders } from "../context/folder";
 
 
-function Search({searchQ, onSearch, sortBy, selected, forSale, setForSale}) {
-
+function Search({searchQ, onSearch, sortBy, selected, forSale, setForSale, selectedFolder, setSelectedFolder}) {
+    const {folders, setFolders} = useFolders()
     function toggleForSale() {
         setForSale(!forSale)
     }
+    // console.log(folders)
+    const folderList = folders.map((folder) => {
+        return (
+            <option className='item' value={folder.id}><button className="ui circular icon button small inverted"><i className="close icon"></i></button>{folder.name}</option>
+        )
+    })
 
     return (
         <div className="ui centered grid">
@@ -24,6 +31,17 @@ function Search({searchQ, onSearch, sortBy, selected, forSale, setForSale}) {
             <span>            
             <select className="ui selection dropdown"
                 style={{padding: "5px"}}
+                name="folder"
+                value={selectedFolder} // ...force the select's value to match the state variable...
+                onChange={setSelectedFolder}
+                >
+                {folderList}
+            </select>
+            </span>
+            <span>            
+            <select className="ui selection dropdown"
+                style={{padding: "5px"}}
+                name="sort"
                 value={selected} // ...force the select's value to match the state variable...
                 onChange={sortBy}>
                 <option value="Default">Sort by: ---------- </option>

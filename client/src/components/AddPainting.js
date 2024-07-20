@@ -3,11 +3,19 @@ import {Link, useNavigate} from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import UploadWidget from "./UploadWidget";
+import { useFolders } from "../context/folder";
 
 function AddPainting() {
     const navigate = useNavigate();
     const [error, setError] = useState(null);
     const [imageUrl, setImageUrl] = useState("");
+    const { folders } = useFolders();
+
+    const folderList = folders.map((folder) => {
+        return (
+            <option value={folder.id}>{folder.name}</option>
+        )
+    })
 
     const formSchema = yup.object().shape({
         title: yup.string().required("Please enter a title"),
@@ -21,6 +29,8 @@ function AddPainting() {
         sale_price: yup.string().required("Please enter an price"),
         image: yup.string().required("Please enter an image link"),
         sold: yup.string()
+        .required("Please select a value"),
+        folder_id: yup.number()
         .required("Please select a value")
     })
     const formik = useFormik({
@@ -33,6 +43,7 @@ function AddPainting() {
             sale_price:'',
             image:`${imageUrl}`,
             sold:'',
+            folder_id:'',
         },
     validationSchema: formSchema,
     onSubmit: (values) => {
@@ -55,6 +66,7 @@ function AddPainting() {
     },
   })
 
+
     return (
         <>
         {error && <h2 style={{color:'red', textAlign:'center'}}> {error} </h2>}
@@ -69,27 +81,31 @@ function AddPainting() {
                     {formik.errors && <p style={{color:'red', textAlign:'center'}}>{formik.errors.image}</p>}
                 </div>   
                 <div className="field">
+                    <label>Title</label>
                     <input type="text" name="title" value={formik.values.title} placeholder="Title..." onChange={formik.handleChange}></input>
                     {formik.errors && <p style={{color:'red', textAlign:'center'}}>{formik.errors.title}</p>}
                 </div>
                 <div className="field">
+                    <label>Materials</label>
                     <input type="text"name="materials" value={formik.values.materials} placeholder="Materials..." onChange={formik.handleChange}></input>               
                     {formik.errors && <p style={{color:'red', textAlign:'center'}}>{formik.errors.materials}</p>}
                 </div>    
                 <div className="field">
+                    <label>Width</label>
                     <input type="text"  name="width" value={formik.values.width} placeholder="Width in inches..." onChange={formik.handleChange}></input>               
                     {formik.errors && <p style={{color:'red', textAlign:'center'}}>{formik.errors.width}</p>}
                 </div>    
                 <div className="field">
+                    <label>Height</label>
                     <input type="text" name="height" value={formik.values.height} placeholder="Height in inches..." onChange={formik.handleChange}></input>               
                     {formik.errors && <p style={{color:'red', textAlign:'center'}}>{formik.errors.height}</p>}
                 </div>    
                 <div className="field">
+                    <label>Sale Price</label>
                     <input type="text" name="sale_price" value={formik.values.sale_price} placeholder="Price..." onChange={formik.handleChange}></input>               
                     {formik.errors && <p style={{color:'red', textAlign:'center'}}>{formik.errors.sale_price}</p>}
                 </div>           
                 <div className="field">
-                    {/* <input type="text" name="sold" value={formik.values.sold} placeholder="True or False..." onChange={formik.handleChange}></input>  */}
                     <select className="ui selection dropdown"
                         name="sold"
                         style={{padding: "5px"}}
@@ -99,6 +115,17 @@ function AddPainting() {
                         <option value="true">Sold</option>
                     </select>              
                     {formik.errors && <p style={{color:'red', textAlign:'center'}}>{formik.errors.sold}</p>}
+                </div>
+                <div className="field">
+                    <label>Folder</label>
+                    <select className="ui selection dropdown"
+                        name="folder_id"
+                        style={{padding: "5px"}}
+                        onChange={formik.handleChange}
+                        value={formik.values.folder_id}>
+                        {folderList}
+                    </select>              
+                    {formik.errors && <p style={{color:'red', textAlign:'center'}}>{formik.errors.folder_id}</p>}
                 </div>
                 <div className="field">
                 {/* <Link to="/paintings" className="ui button small teal" >Back</Link> */}

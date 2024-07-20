@@ -29,19 +29,27 @@ import EditPost from './components/EditPost.js';
 import EditEvent from './components/EditEvent.js';
 import User from './components/User.js';
 import { useDevice } from './context/device.js';
+import { useFolders } from './context/folder.js';
 
 
 export default function App() {
   const [pageToLoad, setPageToLoad] = useState("homepage")
   const { user, setUser } = useUser()
   const { setIsAdmin } = useAdmin()
-  const {setDeviceSize} = useDevice();
+  const {setDeviceSize} = useDevice()
+  const {setFolders} = useFolders()
 
   useEffect(() => {
     const resizeW = () => setDeviceSize(window.innerWidth);
     window.addEventListener("resize", resizeW); // Update the width on resize
     return () => window.removeEventListener("resize", resizeW);
   });
+
+  useEffect(() => {
+    fetch(`/folder`)
+    .then((res) => res.json())
+    .then((folders) => {setFolders(folders)})
+  }, []);
 
   const navigate = useNavigate();
 

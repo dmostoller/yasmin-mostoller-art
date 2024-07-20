@@ -1,14 +1,41 @@
 import React, { useState } from "react";
 import { useUser } from "../context/user";
 import EditUser from "./EditUser";
+import { useFolders } from "../context/folder";
+import Folder from "./Folder";
+import AddFolder from "./AddFolder";
+import { Button, Icon } from "semantic-ui-react";
+
 
 export default function User () {
     const [showEdit, setShowEdit] = useState(false);
     const {user} = useUser();
+    const {folders, setFolders} = useFolders()
+    const [showFolderInput, setShowFolderInput] = useState(false);
+
+    function toggleFolderInput() {
+        setShowFolderInput(prevVal => !prevVal)
+    }
 
     function showEditForm() {
         setShowEdit(!showEdit)
     }
+
+    const deleteFolder = (deleted_folder_id) => {
+        setFolders(folders => folders.filter((folder) => folder.id !== deleted_folder_id))
+        // console.log(deleted_comment_id)
+    }
+
+    const foldersList = folders.map((folder) => {
+        return (
+            <Folder 
+                onDeleteFolder={deleteFolder}
+                key={folder.id}
+                id={folder.id}
+                name={folder.name}
+                />
+        )
+    })
 
     return (
         <div className="ui middle aligned center aligned grid" style={{minHeight:"100vh"}}>
@@ -30,6 +57,28 @@ export default function User () {
                 </div>
             </div>
         }
+        <div className="ui container">
+            <h4 className="ui horizontal divider">Folders</h4>
+            <div className="ui centered grid" style={{marginTop: "25x"}}>
+            <div className="ui padded basic segment">
+            {showFolderInput ?
+                    <AddFolder onToggleFolder={toggleFolderInput}/>
+                :
+                    <Button
+                        icon
+                        className='ui teal button'
+                        labelPosition='left'  
+                        onClick={toggleFolderInput}>
+                        <Icon name='folder' />
+                        Create New Folder
+                    </Button>
+                }
+                </div>
+                <div className="ui cards">
+                    {foldersList}
+                </div>
+            </div>
+        </div>
     </div>
     );
 }

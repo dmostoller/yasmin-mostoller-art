@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { UserProvider } from "./context/user";
 import { AdminProvider } from "./context/admin";
 import { DeviceProvider } from './context/device';
+import { FoldersProvider } from './context/folder';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +14,9 @@ root.render(
         <DeviceProvider>
             <UserProvider>
                 <AdminProvider>
-                    <App />
+                    <FoldersProvider>
+                        <App />
+                    </FoldersProvider>
                 </AdminProvider>
             </UserProvider>
         </DeviceProvider>

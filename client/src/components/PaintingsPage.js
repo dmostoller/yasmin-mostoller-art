@@ -4,6 +4,9 @@ import Search from "./Search";
 import { Link } from "react-router-dom";
 import { useUser } from "../context/user";
 import { useAdmin } from "../context/admin.js"
+import { useFolders } from "../context/folder.js";
+import { Button, Icon } from "semantic-ui-react";
+import AddFolder from "./AddFolder.js";
 
 function PaintingsPage () {
     const { user } = useUser()
@@ -12,7 +15,14 @@ function PaintingsPage () {
     const [searchQ, setSearchQ] = useState("")
     const [sortBy, setSortBy] = useState("Default")
     const [forSale, setForSale] = useState(false)
+    const [showFolderInput, setShowFolderInput] = useState(false);
+    const { folders, setFolders } = useFolders([])
+    const [selectedFolder, setSelectedFolder] = useState(2)
+    const {filteredPaintings, setFilteredPaintings} = useState(null)
 
+    function toggleFolderInput() {
+        setShowFolderInput(prevVal => !prevVal)
+    }
 
     useEffect(() => {
       fetch(`/painting`)
@@ -38,6 +48,9 @@ function PaintingsPage () {
         )
     }
     })
+
+
+
     if (sortBy === "Small"){
         (searchResults.sort((a, b) => (a.width*a.height) < (b.width*b.height) ? -1 : 1))
     } else if (sortBy === "Large"){
@@ -48,27 +61,58 @@ function PaintingsPage () {
         (searchResults.sort((a, b) => (a.sale_price) > (b.sale_price) ? -1 : 1))
     }
 
+
+    const folderResults = searchResults
+    .filter(painting => {
+            if (painting.folder_id == selectedFolder) {
+                return (
+                    painting
+                )
+            }
+    })
+
     const handleSortBy = (e) => {
         setSortBy(e.target.value)
     }
 
+    const handleSelectedFolder = (e) => {
+        setSelectedFolder(e.target.value)
+        // console.log(e.target.value)
+    }    
+
     return (
         <div className="ui container fluid">
             <div className="ui container fluid">
-                <Search searchQ={searchQ} onSearch={setSearchQ} selected={sortBy} sortBy={handleSortBy} forSale={forSale} setForSale={setForSale}/>
+                <Search 
+                    searchQ={searchQ} onSearch={setSearchQ} 
+                    selected={sortBy} sortBy={handleSortBy} 
+                    forSale={forSale} setForSale={setForSale}
+                    selectedFolder={selectedFolder} setSelectedFolder={handleSelectedFolder}
+                    />
                 {(user && isAdmin) &&
-                    <div style={{paddingTop: "20px"}} className="ui container">   
-                        <Link to="/paintings/new" className="ui circular animated fade icon button teal fluid small" tabindex="0">
-                            <div className="visible content"><i className="plus icon"></i></div>
-                            <div className="hidden content">
-                                Create New Painting
-                            </div> 
+                    <div style={{paddingTop: "20px"}} className="ui centered grid"> 
+                        <Link to="/paintings/new" className="ui labeled icon button teal">
+                            <i className="plus icon"></i>Add New Painting
                         </Link>
+         
+                        {showFolderInput ?
+                            <AddFolder onToggleFolder={toggleFolderInput}/>
+                        :
+                            <Button
+                                icon
+                                className='ui teal button'
+                                labelPosition='left'  
+                                onClick={toggleFolderInput}>
+                                <Icon name='folder' />
+                                Create New Folder
+                            </Button>
+                        }
+                      
                     </div>
                 }
             </div>
             <div className="ui container centered" style={{paddingTop:"50px"}}>
-                <PaintingsList paintings={searchResults}/>
+                <PaintingsList paintings={folderResults}/>
             </div>
         </div>
     )

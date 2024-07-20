@@ -26,7 +26,7 @@ from flask_cors import CORS
 from config import app, db, api, os
 
 # Add your model imports
-from models import User, Painting, Comment, Post, Event, PostComment
+from models import User, Painting, Comment, Post, Event, PostComment, Folder
 
 CORS(app)
 
@@ -140,6 +140,7 @@ class Paintings(Resource):
                 height=form_json["height"],
                 sale_price=form_json["sale_price"],
                 image=form_json["image"],
+                folder_id=form_json["folder_id"],
                 sold=sold_response,
             )
             db.session.add(new_painting)
@@ -171,6 +172,7 @@ class PaintingsById(Resource):
                 setattr(painting, "height", request.get_json()["height"])
                 setattr(painting, "sale_price", request.get_json()["sale_price"])
                 setattr(painting, "image", request.get_json()["image"])
+                setattr(painting, "folder_id", request.get_json()["folder_id"])
                 setattr(painting, "sold", sold_response)
 
                 db.session.commit()
@@ -398,6 +400,57 @@ class EventsById(Resource):
 
 api.add_resource(Events, "/event")
 api.add_resource(EventsById, "/event/<int:id>")
+
+
+class Folders(Resource):
+    def get(self):
+        folders = [folder.to_dict() for folder in Folder.query.all()]
+        reponse = make_response(folders, 200)
+        return reponse
+
+    def post(self):
+        try:
+            form_json = request.get_json()
+            new_folder = Folder(
+                name=form_json["name"],
+            )
+            db.session.add(new_folder)
+            db.session.commit()
+            response = make_response(new_folder.to_dict(), 201)
+        except ValueError:
+            response = make_response({"errors": ["validation errors"]}, 422)
+
+        return response
+
+
+class FoldersById(Resource):
+    def delete(self, id):
+        folder = Folder.query.filter_by(id=id).first()
+        if not folder:
+            abort(404, "The comment was not found")
+        db.session.delete(folder)
+        db.session.commit()
+        response = make_response("", 204)
+        return response
+    
+    def patch(self, id):
+        folder = Folder.query.filter_by(id=id).first()
+        if folder:
+            try:
+                for attr in request.get_json():
+                    setattr(folder, attr, request.get_json()[attr])
+                    db.session.commit()
+                    response = make_response(folder.to_dict(), 200)
+            except ValueError:
+                response = make_response({"errors": ["validation errors"]}, 400)
+        else:
+            response = make_response({"error": "Event not found"}, 404)
+        return response
+
+
+api.add_resource(Folders, "/folder")
+api.add_resource(FoldersById, "/folder/<int:id>")
+
 
 
 @app.errorhandler(404)

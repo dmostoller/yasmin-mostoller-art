@@ -3,6 +3,8 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import UploadWidget from "./UploadWidget";
+import { useFolders } from "../context/folder";
+
 
 
 function EditPainting() {
@@ -12,6 +14,13 @@ function EditPainting() {
     const {id} = useParams();
     const [imageUrl, setImageUrl] = useState("");
 
+    const { folders } = useFolders();
+
+    const folderList = folders.map((folder) => {
+        return (
+            <option value={folder.id}>{folder.name}</option>
+        )
+    })
 
     useEffect(() => {
         fetch(`/painting/${id}`)
@@ -34,6 +43,8 @@ function EditPainting() {
         sale_price: yup.string().required("Please enter an price"),
         image: yup.string().required("Please enter an image link"),
         sold: yup.string()
+        .required("Please select a value"),
+        folder_id: yup.number()
         .required("Please select a value")
     })
     // const initValues = painting
@@ -48,6 +59,7 @@ function EditPainting() {
         sale_price:`${painting.sale_price}`,
         image:`${imageUrl}`,
         sold:`${painting.sold}`,
+        folder_id:`${painting.folder_id}`,
     },
       validationSchema: formSchema,
       onSubmit: (values) => {
@@ -118,6 +130,17 @@ function EditPainting() {
                         <option value="true">Sold</option>
                     </select>              
                     {formik.errors && <p style={{color:'red', textAlign:'center'}}>{formik.errors.sold}</p>}
+                </div>
+                <div className="field">
+                    <label>Folder</label>
+                    <select className="ui selection dropdown"
+                        name="folder_id"
+                        style={{padding: "5px"}}
+                        onChange={formik.handleChange}
+                        value={formik.values.folder_id}>
+                        {folderList}
+                    </select>              
+                    {formik.errors && <p style={{color:'red', textAlign:'center'}}>{formik.errors.folder_id}</p>}
                 </div>
                 <div className="field">
                 {/* <Link to={`/paintings/${id}`} className="ui button small teal" >Back</Link> */}

@@ -68,7 +68,10 @@ class Painting(db.Model, SerializerMixin):
 
     comments = db.relationship('Comment', back_populates='painting', cascade='all, delete')
 
-    serialize_rules = ('-comments.painting', )
+    folder_id = db.Column(db.Integer, db.ForeignKey('folders.id'))
+    folder = db.relationship('Folder', back_populates='paintings')
+
+    serialize_rules = ('-comments.painting', '-folder.painting')
 
     def __repr__(self):
         return f'<Painting {self.id}>'
@@ -140,3 +143,15 @@ class Event(db.Model, SerializerMixin):
         return f'<Event {self.id}>'
     
 
+class Folder(db.Model, SerializerMixin):
+    __tablename__ = 'folders'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+
+    paintings = db.relationship('Painting', back_populates='folder')
+
+    serialize_rules = ('-paintings.folder', )
+
+    def __repr__(self):
+        return f'<Folder {self.id}>'

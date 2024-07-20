@@ -29,6 +29,8 @@ function PaintingDetail(){
         .then((painting) => setPainting(painting))
     }, [id]);
 
+    
+
     const handleDeletePainting = (e) => {
         if (window.confirm("Are you sure you want to delete this painting?")) {
         fetch(`/painting/${id}`, {
@@ -42,6 +44,7 @@ function PaintingDetail(){
     return (
         <div className="ui container">
             <div className="ui horizontal card fluid">
+
                 <div className="item">
                     <div className="image">
                         <img className="ui large image" 
@@ -60,6 +63,15 @@ function PaintingDetail(){
                     </div>
                 </div>
                 <div className="content" style={{padding: "25px"}}>
+                    {/* <div class="right floated meta">
+                        <div className="ui teal message">
+                            <div className="header">
+                            <i className="folder icon"></i>
+                            {painting.folder.name}
+                            </div>
+                        </div>
+                    </div> */}
+                    
                         <div className="header"><h2>{painting.title}</h2></div>
                         <div className="description">{painting.materials}</div>
                         <div className="description">{painting.width}" x {painting.height}"</div>
