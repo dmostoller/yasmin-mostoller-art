@@ -17,7 +17,7 @@ function PaintingsPage () {
     const [forSale, setForSale] = useState(false)
     const [showFolderInput, setShowFolderInput] = useState(false);
     const { folders, setFolders } = useFolders([])
-    const [selectedFolder, setSelectedFolder] = useState(2)
+    const [selectedFolder, setSelectedFolder] = useState("none")
     const {filteredPaintings, setFilteredPaintings} = useState(null)
 
     function toggleFolderInput() {
@@ -64,11 +64,17 @@ function PaintingsPage () {
 
     const folderResults = searchResults
     .filter(painting => {
-            if (painting.folder_id == selectedFolder) {
-                return (
-                    painting
-                )
-            }
+            if (selectedFolder !== "none") { 
+                if (painting.folder_id == selectedFolder) {
+                    return (
+                        painting
+                    )
+                }
+        } else {
+            return (
+                painting
+            )
+        }
     })
 
     const handleSortBy = (e) => {

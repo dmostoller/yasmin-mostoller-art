@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useUser } from "../context/user";
-import { DropdownMenu, Dropdown, Menu } from 'semantic-ui-react'
+import { DropdownMenu, Dropdown, Menu, MenuItem } from 'semantic-ui-react'
 import { useDevice } from "../context/device";
+import Logo from "../assets/yasi-logo-1.png"
 
 
 function Header({ onLogout}) {
@@ -17,12 +18,12 @@ function Header({ onLogout}) {
 
 // console.log(deviceSize)
    return ( 
-    <Menu className='ui top fixed menu'>
+    <Menu className='ui top fixed menu large'>
     {(deviceSize <= 768) && 
             <>
             <Dropdown     
-            icon='hamburger'
-            style={{padding: "1em"}}
+            icon='large hamburger'
+            style={{padding: "1.3em"}}
             floating
             className='dropdown icon'>
                 <DropdownMenu>
@@ -36,7 +37,12 @@ function Header({ onLogout}) {
             </>
         }
             
-        <Link to="/" className="header item" >YASMIN MOSTOLLER</Link>
+        {/* <Link to="/" className="header item" >YASMIN MOSTOLLER</Link> */}
+        <Link to="/">
+        <MenuItem header style={{padding: "1px"}}>
+            <img alt="logo" src={Logo} style={{width: "110px", margin: "0px"}}></img>
+        </MenuItem>
+        </Link>
         
         {(deviceSize > 768) &&
         <>
@@ -51,19 +57,19 @@ function Header({ onLogout}) {
             <div className="item">
                 { !user ? (
                     <>
-                    <Link to='/login' style={{marginRight: '3px'}} data-tooltip="Login" data-position="bottom center" className="ui circular teal icon button small">
+                    <Link to='/login' style={{marginRight: '3px'}} data-tooltip="Login" data-position="bottom center" className="ui circular teal icon button large">
                         <i className="sign in alternate icon"></i>
                     </Link>
-                    <Link to='/signup' style={{marginRight: '3px'}} data-tooltip="Sign Up" data-position="bottom right" className="ui circular teal icon button small">
+                    <Link to='/signup' style={{marginRight: '3px'}} data-tooltip="Sign Up" data-position="bottom right" className="ui circular teal icon button large">
                         <i className="plus icon"></i>
                     </Link>
                     </>
                 ) : (
                     <>
-                    <button onClick={handleLogout} style={{marginRight: '3px'}} data-inverted="" data-tooltip="Logout" data-position="bottom center" className="ui circular teal icon button small">
+                    <button onClick={handleLogout} style={{marginRight: '3px'}} data-inverted="" data-tooltip="Logout" data-position="bottom center" className="ui circular teal icon button large">
                         <i className="sign out alternate icon"></i>
                     </button>
-                    <Link to='/user' style={{marginRight: '3px'}} data-inverted="" data-tooltip="User Profile" data-position="bottom right" className="ui circular teal icon button small">
+                    <Link to='/user' style={{marginRight: '3px'}} data-inverted="" data-tooltip="User Profile" data-position="bottom right" className="ui circular teal icon button large">
                         <i className="user icon"></i>
                     </Link>
                     </>

@@ -2,16 +2,14 @@ import { Input, Icon, Button } from "semantic-ui-react"
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useState } from "react";
-import { useFolders } from "../context/folder";
 
 
-export default function EditFolder({name, id, setFolderName, onToggleEdit}) {
+export default function EditFolder({name, id, setFolderName, onToggleEdit, onUpdateFolders }) {
     const [error, setError] = useState(null)
-    const {folders, setFolders} = useFolders()
 
     const formSchema = yup.object().shape({
         name: yup.string()
-        .required("Please enter a group name"),
+        .required("Please enter a folder name"),
     })
     const formik = useFormik({
       enableReinitialize: true,
@@ -30,6 +28,7 @@ export default function EditFolder({name, id, setFolderName, onToggleEdit}) {
         if (r.ok) {
           r.json().then(newFolder => {
             setFolderName(newFolder.name)
+            onUpdateFolders(id, newFolder)
             formik.resetForm()
             onToggleEdit()
             // toast.dark('Recipient added succesfully');
@@ -62,7 +61,7 @@ export default function EditFolder({name, id, setFolderName, onToggleEdit}) {
                 <input/>
                 <Button className='basic teal icon button' type='submit'><i class="check icon"></i></Button>
             </Input>
-            {formik.errors && <p style={{color:'red', textAlign:'left'}}>{formik.errors.name}</p>}
+            {formik.errors && <p style={{fontSize: "12px", color:'red', textAlign:'left'}}>{formik.errors.name}</p>}
 
         </form>
         

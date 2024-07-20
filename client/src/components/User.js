@@ -26,6 +26,13 @@ export default function User () {
         // console.log(deleted_comment_id)
     }
 
+    const updateFolders = (updated_folder_id, updatedFolder) => {
+        setFolders(folders => folders
+            .filter((folder) => folder.id !== updated_folder_id)
+            .concat(updatedFolder)
+        )
+    }  
+
     const foldersList = folders.map((folder) => {
         return (
             <Folder 
@@ -33,6 +40,7 @@ export default function User () {
                 key={folder.id}
                 id={folder.id}
                 name={folder.name}
+                onUpdateFolders={updateFolders}
                 />
         )
     })
@@ -74,7 +82,7 @@ export default function User () {
                     </Button>
                 }
                 </div>
-                <div className="ui cards">
+                <div className="ui centered cards">
                     {foldersList}
                 </div>
             </div>

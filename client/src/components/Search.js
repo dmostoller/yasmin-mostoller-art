@@ -35,6 +35,7 @@ function Search({searchQ, onSearch, sortBy, selected, forSale, setForSale, selec
                 value={selectedFolder} // ...force the select's value to match the state variable...
                 onChange={setSelectedFolder}
                 >
+                    <option value="none">Select Folder: </option>
                 {folderList}
             </select>
             </span>
@@ -44,7 +45,7 @@ function Search({searchQ, onSearch, sortBy, selected, forSale, setForSale, selec
                 name="sort"
                 value={selected} // ...force the select's value to match the state variable...
                 onChange={sortBy}>
-                <option value="Default">Sort by: ---------- </option>
+                <option value="Default">Sort by: </option>
                 <option value="Small">Size: Small - Large</option>
                 <option value="Large">Size: Large - Small</option>
                 <option value="Low">Price: Low - High</option>

@@ -49,7 +49,7 @@ export default function App() {
     fetch(`/folder`)
     .then((res) => res.json())
     .then((folders) => {setFolders(folders)})
-  }, []);
+  }, [setFolders]);
 
   const navigate = useNavigate();
 
@@ -87,7 +87,7 @@ export default function App() {
     <div className='ui container'>
 
       <Header onLogout={handleLogout}/>
-      <div style={{marginTop: "75px"}}>
+      <div style={{marginTop: "90px"}}>
       <ToastContainer/>
       <Routes>
           <Route path="/" element={<HomePage />} />

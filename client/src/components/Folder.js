@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button, Icon } from "semantic-ui-react";
 import EditFolder from "./EditFolder";
 
-export default function Folder ({id, name, onDeleteFolder}) {
+export default function Folder ({id, name, onDeleteFolder, onUpdateFolders}) {
     const [showEdit, setShowEdit] = useState(false);
     const [folderName, setFolderName] = useState(name)
     
@@ -30,9 +30,10 @@ export default function Folder ({id, name, onDeleteFolder}) {
                         id={id} 
                         onToggleEdit={toggleEdit} 
                         setFolderName={setFolderName}
+                        onUpdateFolders={onUpdateFolders}
                         /> 
                         :
-                        name
+                        folderName
                     } 
                     </div>
                 </div>
