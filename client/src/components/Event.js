@@ -54,13 +54,13 @@ export default function Event ({id, name, venue, location, details, image_url, e
                     <div className="description"><p style={{fontWeight: "bold"}}>{location}</p></div>                                   
                     <div className="description">{details}</div>
                     <div style={{paddingTop: "20px"}}> 
-                    <a href={event_link} className="ui circular button small teal" target="_blank" rel="noopener noreferrer">Tickets / Info</a>
+                    <a href={event_link} className="ui circular button teal" target="_blank" rel="noopener noreferrer">Tickets / Info</a>
                     { user && isAdmin ? (
                         <>
-                            <Link to={`/events/${id}/edit`} className="ui circular icon button small teal">
+                            <Link to={`/events/${id}/edit`} className="ui circular icon button teal">
                                 <i className="edit icon"></i>
                             </Link>
-                            <div className="ui circular icon button small teal" onClick={handleDeleteEvent}>
+                            <div className="ui circular icon button teal" onClick={handleDeleteEvent}>
                                 <i class="trash icon"></i>
                             </div>
                         </>

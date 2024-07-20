@@ -89,15 +89,15 @@ function PostDetail(){
                         <p>{post.content}</p>
                     </div>
                     <div style={{padding: "10px"}}> 
-                        <Link to="/" className="ui circular icon button small teal">
+                        <Link to="/" className="ui circular icon button teal">
                         <i className="undo icon"></i>
                         </Link>
                         { user && isAdmin && (
                                         <>
-                                            <Link to={`/posts/${id}/edit`} className="ui circular icon button small teal">
+                                            <Link to={`/posts/${id}/edit`} className="ui circular icon button teal">
                                                 <i className="edit icon"></i>
                                             </Link>
-                                            <div className="ui circular icon button small teal" onClick={handleDeletePost}>
+                                            <div className="ui circular icon button teal" onClick={handleDeletePost}>
                                                 <i className="trash icon" style={{visibility: "visible"}}></i>
                                             </div>
                                         </>

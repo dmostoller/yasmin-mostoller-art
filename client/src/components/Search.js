@@ -30,7 +30,7 @@ function Search({searchQ, onSearch, sortBy, selected, forSale, setForSale, selec
             </span>
             <span>            
             <select className="ui selection dropdown"
-                style={{padding: "5px"}}
+                style={{padding: "5px", marginBottom: "5px"}}
                 name="folder"
                 value={selectedFolder} // ...force the select's value to match the state variable...
                 onChange={setSelectedFolder}
