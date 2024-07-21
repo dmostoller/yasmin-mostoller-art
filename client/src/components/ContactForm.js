@@ -33,7 +33,7 @@ const ContactForm = () => {
         <label>Message</label>
         <textarea type="text" name="message" />
      </div>
-     <button className="ui circular button fluid teal" type="submit">Submit</button>
+     <button className="ui circular button fluid large teal" type="submit">Submit</button>
    </form>
  );
 };
