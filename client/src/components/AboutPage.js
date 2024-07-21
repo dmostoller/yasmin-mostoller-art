@@ -21,11 +21,11 @@ return (
                 <br></br>Yasmin's works are an exploration of abstract ideas, stemming from a unique perspective on space and motion. Utilizing various techniques and methods for applying paint, Yasmin has created whole worlds within her canvases. Bright, colorful, and energetic vistas into a unique universe derived from a global perspective and a reach into the unknown.</p>
             </div>
             <div>
-                <Link to="https://www.facebook.com/yasminmostollerart" target="blank"  className="ui circular facebook icon button" style={{marginTop: "5px", marginRight: "5px"}}>
+                <Link to="https://www.facebook.com/yasminmostollerart" target="blank"  className="ui circular facebook icon large button" style={{marginTop: "5px", marginRight: "5px"}}>
                     <i className="facebook icon"></i>
                 </Link> 
-                <Link to="/contact" className="ui circular button teal">Contact Me</Link>
-                <Link to="https://www.instagram.com/yasminnunsy/" target="blank"  className="ui circular icon purple button" style={{marginTop: "5px", marginRight: "5px"}}>
+                <Link to="/contact" className="ui circular button large teal">Contact Me</Link>
+                <Link to="https://www.instagram.com/yasminnunsy/" target="blank"  className="ui circular icon purple large button" style={{marginTop: "5px", marginRight: "5px"}}>
                     <i className="instagram icon"></i>
                 </Link>
             </div>

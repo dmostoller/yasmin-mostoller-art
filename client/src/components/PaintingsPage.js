@@ -98,7 +98,7 @@ function PaintingsPage () {
                 {(user && isAdmin) &&
                     <div style={{paddingTop: "20px"}} className="ui centered grid"> 
                         <Link to="/paintings/new" className="ui labeled icon button teal">
-                            <i className="plus icon"></i>Add New Painting
+                            <i className="plus icon"></i>Add Painting
                         </Link>
          
                         {showFolderInput ?
@@ -110,7 +110,7 @@ function PaintingsPage () {
                                 labelPosition='left'  
                                 onClick={toggleFolderInput}>
                                 <Icon name='folder' />
-                                Create New Folder
+                                Create Folder
                             </Button>
                         }
                       

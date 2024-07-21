@@ -31,7 +31,7 @@ function PostsList ({user, isAdmin}) {
         <h2 className="ui dividing header" style={{textAlign: "left", padding: "10px"}}>My Blog</h2>    
         {(user && isAdmin) &&
             <div className="ui container">   
-                <Link to={`/posts/new`} className="ui circular animated fade icon button fluid teal small" tabindex="0">
+                <Link to={`/posts/new`} className="ui circular animated fade icon button fluid teal" tabindex="0">
                     <div className="visible content"><i className="plus icon"></i></div>
                     <div className="hidden content">
                         Create New Post

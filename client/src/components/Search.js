@@ -18,7 +18,7 @@ function Search({searchQ, onSearch, sortBy, selected, forSale, setForSale, selec
     return (
         <div className="ui centered grid">
             <span>
-            <div className="ui icon input " style={{marginBottom: "5px"}}>
+            <div className="ui icon input " style={{marginBottom: "10px"}}>
                 <input 
                 type="text"
                 value={searchQ}
@@ -30,7 +30,7 @@ function Search({searchQ, onSearch, sortBy, selected, forSale, setForSale, selec
             </span>
             <span>            
             <select className="ui selection dropdown"
-                style={{padding: "5px", marginBottom: "5px"}}
+                style={{padding: "5px", marginBottom: "10px"}}
                 name="folder"
                 value={selectedFolder} // ...force the select's value to match the state variable...
                 onChange={setSelectedFolder}

@@ -18,7 +18,7 @@ function Header({ onLogout}) {
 
 // console.log(deviceSize)
    return ( 
-    <Menu className='ui top fixed menu large'>
+    <Menu className='ui top fixed borderless menu large'>
     {(deviceSize <= 768) && 
             <>
             <Dropdown     
@@ -27,11 +27,11 @@ function Header({ onLogout}) {
             floating
             className='dropdown icon'>
                 <DropdownMenu>
-                    <NavLink to="/" className="item" >Home</NavLink>
-                    <NavLink to="/about" className="item" >About Me</NavLink>
-                    <NavLink to="/paintings" className="item" >Paintings</NavLink>
-                    <NavLink to="/events" className="item" >Exhibitions</NavLink>
-                    <NavLink to="/contact" className="item" >Contact</NavLink>
+                    <NavLink to="/" className="item" style={{width: "200px"}}><h3>Home</h3></NavLink>
+                    <NavLink to="/about" className="item" ><h3>About Me</h3></NavLink>
+                    <NavLink to="/paintings" className="item" ><h3>Paintings</h3></NavLink>
+                    <NavLink to="/events" className="item" ><h3>Exhibitions</h3></NavLink>
+                    <NavLink to="/contact" className="item" ><h3>Contact</h3></NavLink>
                 </DropdownMenu>
             </Dropdown>
             </>

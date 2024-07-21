@@ -91,14 +91,14 @@ function PaintingDetail(){
                             {painting.sold ? "SOLD" : <Link to="/contact">${painting.sale_price}</Link>}
                         </div>
                         <div style={{marginTop:"5px", padding: "10px"}} className="ui grid"> 
-                            <Link to="/paintings" className="ui circular icon button teal" >
+                            <Link to="/paintings" className="ui circular icon button large teal" >
                             <i className="undo icon"></i></Link>
                             { isAdmin && (
                                 <>
-                                    <Link to={`/paintings/${id}/edit`} className="ui circular icon button teal">
+                                    <Link to={`/paintings/${id}/edit`} className="ui circular icon button large teal">
                                         <i className="edit icon"></i>
                                     </Link>
-                                    <div className="ui circular icon button teal" onClick={handleDeletePainting}>
+                                    <div className="ui circular icon button large teal" onClick={handleDeletePainting}>
                                         <i class="trash icon"></i>
                                     </div>
                                 </>
