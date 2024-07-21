@@ -28,7 +28,7 @@ function PostsList ({user, isAdmin}) {
 
     return (
         <div className="ui container fluid">
-        <h2 className="ui dividing header" style={{textAlign: "left", padding: "10px"}}>My Blog</h2>    
+        <h2 className="ui dividing header" style={{textAlign: "left", padding: "10px"}}></h2>    
         {(user && isAdmin) &&
             <div className="ui container">   
                 <Link to={`/posts/new`} className="ui circular animated fade icon button fluid teal" tabindex="0">
