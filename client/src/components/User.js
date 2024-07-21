@@ -13,6 +13,7 @@ export default function User () {
     const {folders, setFolders} = useFolders()
     const [showFolderInput, setShowFolderInput] = useState(false);
 
+    
     function toggleFolderInput() {
         setShowFolderInput(prevVal => !prevVal)
     }

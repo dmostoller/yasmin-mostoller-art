@@ -4,7 +4,6 @@ import Search from "./Search";
 import { Link } from "react-router-dom";
 import { useUser } from "../context/user";
 import { useAdmin } from "../context/admin.js"
-import { useFolders } from "../context/folder.js";
 import { Button, Icon } from "semantic-ui-react";
 import AddFolder from "./AddFolder.js";
 
@@ -16,7 +15,7 @@ function PaintingsPage () {
     const [sortBy, setSortBy] = useState("Default")
     const [forSale, setForSale] = useState(false)
     const [showFolderInput, setShowFolderInput] = useState(false);
-    const { folders, setFolders } = useFolders([])
+    const [folders, setFolders] = useState([])
     const [selectedFolder, setSelectedFolder] = useState("none")
     const {filteredPaintings, setFilteredPaintings} = useState(null)
 
@@ -29,6 +28,12 @@ function PaintingsPage () {
       .then((res) => res.json())
       .then((paintings) => {setPaintings(paintings)})
     }, []);
+
+    useEffect(() => {
+        fetch(`/folder`)
+        .then((res) => res.json())
+        .then((folders) => {setFolders(folders)})
+      }, []);
 
     const results = paintings
     .filter(painting => {
@@ -77,6 +82,8 @@ function PaintingsPage () {
         }
     })
 
+
+
     const handleSortBy = (e) => {
         setSortBy(e.target.value)
     }
@@ -93,6 +100,7 @@ function PaintingsPage () {
                     searchQ={searchQ} onSearch={setSearchQ} 
                     selected={sortBy} sortBy={handleSortBy} 
                     forSale={forSale} setForSale={setForSale}
+                    folders={folders}
                     selectedFolder={selectedFolder} setSelectedFolder={handleSelectedFolder}
                     />
                 {(user && isAdmin) &&

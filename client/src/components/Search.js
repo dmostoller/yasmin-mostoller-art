@@ -1,14 +1,14 @@
-import React from "react";
 import { Radio } from 'semantic-ui-react'
-import { useFolders } from "../context/folder";
 
 
-function Search({searchQ, onSearch, sortBy, selected, forSale, setForSale, selectedFolder, setSelectedFolder}) {
-    const {folders, setFolders} = useFolders()
+function Search({searchQ, onSearch, sortBy, selected, forSale, setForSale, selectedFolder, setSelectedFolder, folders}) {
     function toggleForSale() {
         setForSale(!forSale)
     }
-    // console.log(folders)
+
+
+console.log(folders)
+
     const folderList = folders.map((folder) => {
         return (
             <option className='item' value={folder.id}><button className="ui circular icon button small inverted"><i className="close icon"></i></button>{folder.name}</option>
