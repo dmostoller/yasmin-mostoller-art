@@ -17,7 +17,6 @@ function PaintingsPage () {
     const [showFolderInput, setShowFolderInput] = useState(false);
     const [folders, setFolders] = useState([])
     const [selectedFolder, setSelectedFolder] = useState("none")
-    const {filteredPaintings, setFilteredPaintings} = useState(null)
 
     function toggleFolderInput() {
         setShowFolderInput(prevVal => !prevVal)
@@ -34,6 +33,7 @@ function PaintingsPage () {
         .then((res) => res.json())
         .then((folders) => {setFolders(folders)})
       }, []);
+
 
     const results = paintings
     .filter(painting => {
@@ -82,7 +82,10 @@ function PaintingsPage () {
         }
     })
 
-
+    const addFolder = (newFolder) =>{
+        setFolders([...folders, newFolder])
+    }
+    
 
     const handleSortBy = (e) => {
         setSortBy(e.target.value)
@@ -110,7 +113,7 @@ function PaintingsPage () {
                         </Link>
          
                         {showFolderInput ?
-                            <AddFolder onToggleFolder={toggleFolderInput}/>
+                            <AddFolder onToggleFolder={toggleFolderInput} onAddFolder={addFolder}/>
                         :
                             <Button
                                 icon

@@ -49,7 +49,9 @@ function PostCommentForm({onAddComment, postId, onChangeIsComFormVis, user}){
                 <button className="ui circular button fluid small teal" type="submit">Submit</button>
             </div>
         </form>
-         
+         {error &&
+          <div>{error}</div>
+         }
          </div>
     )
 }

@@ -28,7 +28,7 @@ export default function EditFolder({name, id, setFolderName, onToggleEdit, onUpd
         if (r.ok) {
           r.json().then(updatedFolder => {
             setFolderName(updatedFolder.name)
-            onUpdateFolders(id, updatedFolder)
+            // onUpdateFolders(id, updatedFolder)
             formik.resetForm()
             onToggleEdit()
             // toast.dark('Recipient added succesfully');
@@ -62,7 +62,9 @@ export default function EditFolder({name, id, setFolderName, onToggleEdit, onUpd
                 <Button className='basic teal icon button' type='submit'><i class="check icon"></i></Button>
             </Input>
             {formik.errors && <p style={{fontSize: "12px", color:'red', textAlign:'left'}}>{formik.errors.name}</p>}
-
+            {error &&
+          <div>{error}</div>
+            }
         </form>
         
     )

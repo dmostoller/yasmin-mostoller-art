@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useUser } from "../context/user";
 import EditUser from "./EditUser";
-import { useFolders } from "../context/folder";
 import Folder from "./Folder";
 import AddFolder from "./AddFolder";
 import { Button, Icon } from "semantic-ui-react";
@@ -10,7 +9,10 @@ import { Button, Icon } from "semantic-ui-react";
 export default function User () {
     const [showEdit, setShowEdit] = useState(false);
     const {user} = useUser();
-    const {folders, setFolders} = useFolders()
+    // const {folders, setFolders} = useFolders()
+    const [folders, setFolders] = useState([])
+
+
     const [showFolderInput, setShowFolderInput] = useState(false);
 
     
@@ -22,6 +24,12 @@ export default function User () {
         setShowEdit(!showEdit)
     }
 
+    useEffect(() => {
+        fetch(`/folder`)
+        .then((res) => res.json())
+        .then((folders) => {setFolders(folders)})
+      }, []);
+
     const deleteFolder = (deleted_folder_id) => {
         setFolders(folders => folders.filter((folder) => folder.id !== deleted_folder_id))
         // console.log(deleted_comment_id)
@@ -32,7 +40,11 @@ export default function User () {
             .filter((folder) => folder.id !== updated_folder_id)
             .concat(updatedFolder)
         )
-    }  
+    }
+
+    const addFolder = (newFolder) =>{
+        setFolders([...folders, newFolder])
+    }
 
     const foldersList = folders.map((folder) => {
         return (
@@ -71,7 +83,7 @@ export default function User () {
             <div className="ui centered grid" style={{marginTop: "25x"}}>
             <div className="ui padded basic segment">
             {showFolderInput ?
-                    <AddFolder onToggleFolder={toggleFolderInput}/>
+                    <AddFolder onToggleFolder={toggleFolderInput} onAddFolder={addFolder}/>
                 :
                     <Button
                         icon

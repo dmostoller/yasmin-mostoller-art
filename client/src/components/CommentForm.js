@@ -48,6 +48,9 @@ function CommentForm({onAddComment, paintingId, onChangeIsComFormVis, user}){
             <div className="field">
                 <button className="ui circular button fluid small teal" type="submit">Submit</button>
             </div>
+            {error &&
+          <div>{error}</div>
+            }
         </form>
          
          </div>

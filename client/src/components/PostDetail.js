@@ -7,12 +7,10 @@ import { Modal } from "semantic-ui-react";
 import PostModal from "./PostModal.js";
 import PostCommentsList from "./PostCommentList.js";
 import VideoPlayer from "./VideoPlayer";
-import { useDevice } from "../context/device";
 
 function PostDetail(){
     const { user } = useUser()
     const { isAdmin } = useAdmin()
-    const {deviceSize} = useDevice();
     const [post, setPost] = useState({})
     const {id} = useParams();
     const navigate = useNavigate();

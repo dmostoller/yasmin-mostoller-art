@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useUser } from "../context/user";
 import { DropdownMenu, Dropdown, Menu, MenuItem } from 'semantic-ui-react'

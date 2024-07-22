@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import './semantic/dist/semantic.min.css'
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
@@ -33,8 +33,7 @@ import { useFolders } from './context/folder.js';
 
 
 export default function App() {
-  const [pageToLoad, setPageToLoad] = useState("homepage")
-  const { user, setUser } = useUser()
+  const { setUser } = useUser()
   const { setIsAdmin } = useAdmin()
   const {setDeviceSize} = useDevice()
   const {setFolders} = useFolders()

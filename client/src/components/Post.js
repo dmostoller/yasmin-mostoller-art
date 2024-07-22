@@ -1,11 +1,9 @@
 import React from "react";
 import {Link } from "react-router-dom";
 import VideoPlayer from "./VideoPlayer";
-import { useDevice } from "../context/device";
 
 
 export default function Post ({id, title, content, image_url, video_url, date_added}) {
-    const {deviceSize} = useDevice();
     // console.log(video_url)
     return (
 
