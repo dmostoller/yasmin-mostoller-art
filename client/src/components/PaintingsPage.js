@@ -94,7 +94,7 @@ function PaintingsPage () {
     }    
 
     return (
-        <div className="ui container fluid">
+        <div className="ui container fluid" style={{minHeight:"100vh"}}>
             <div className="ui container fluid">
                 <Search 
                     searchQ={searchQ} onSearch={setSearchQ} 

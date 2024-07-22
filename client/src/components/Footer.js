@@ -1,16 +1,15 @@
-import React from "react";
 
 export default function Footer () {
     return ( 
-        <footer className="ui segment" style={{marginTop: "25px", textAlign: "center"}}>
+        <div className="ui segment" style={{marginLeft: "0px", marginRight: "0px", marginTop: "25px", padding: "1.5em",textAlign: "center"}}>
             <div>
                 <p>
                     <span className="ui small text">
-                        ©Yasmin Mostoller 2024
+                        © Yasmin Mostoller 2024
                     </span>
                 </p>
 
                 </div>
-        </footer>
+        </div>
 )
 }

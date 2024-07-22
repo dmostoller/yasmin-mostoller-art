@@ -84,33 +84,37 @@ export default function App() {
 
 
   return (
-    <div className='ui container'>
-
-      <Header onLogout={handleLogout}/>
-      <div style={{marginTop: "90px"}}>
-      <ToastContainer/>
-      <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/user" element={<User />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/paintings" element={<PaintingsPage />} />
-          <Route path="/paintings/:id" element={<PaintingDetail />} />
-          <Route path="/paintings/new" element={<AddPainting />}/>
-          <Route path="/paintings/:id/edit" element={<EditPainting />}/>
-          <Route path="/events" element={<EventsPage/>} />
-          <Route path="/events/new" element={<AddEvent/>} />
-          <Route path="/posts/:id" element={<PostDetail/>} />
-          <Route path="/posts/:id/edit" element={<EditPost />} />
-          <Route path="/events/:id" element={<EventDetail />} /> 
-          <Route path="/events/:id/edit" element={<EditEvent/>} /> 
-          <Route path="/contact" element={<ContactPage/>} />
-          <Route path="/posts/new" element={<AddPost/>} />
-          <Route path="/login" element={<LoginForm onLogin={handleLogin}/>} />
-          <Route path="/signup" element={<SignUp />} />
-      </Routes>
-      </div>
-      <Footer />
+    <div className='ui fluid container' style={{minHeight: "100vh"}}>
+        <div>
+            <Header onLogout={handleLogout}/>
+        </div>
+        <div className="ui container" style={{marginTop: "90px"}}>
+            <ToastContainer/>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/user" element={<User />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/paintings" element={<PaintingsPage />} />
+                <Route path="/paintings/:id" element={<PaintingDetail />} />
+                <Route path="/paintings/new" element={<AddPainting />}/>
+                <Route path="/paintings/:id/edit" element={<EditPainting />}/>
+                <Route path="/events" element={<EventsPage/>} />
+                <Route path="/events/new" element={<AddEvent/>} />
+                <Route path="/posts/:id" element={<PostDetail/>} />
+                <Route path="/posts/:id/edit" element={<EditPost />} />
+                <Route path="/events/:id" element={<EventDetail />} /> 
+                <Route path="/events/:id/edit" element={<EditEvent/>} /> 
+                <Route path="/contact" element={<ContactPage/>} />
+                <Route path="/posts/new" element={<AddPost/>} />
+                <Route path="/login" element={<LoginForm onLogin={handleLogin}/>} />
+                <Route path="/signup" element={<SignUp />} />
+            </Routes>
+        </div>
+        <div>
+            <Footer />
+        </div>
     </div>
+    
   );
 }
 
