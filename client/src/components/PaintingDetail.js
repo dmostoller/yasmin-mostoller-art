@@ -83,6 +83,7 @@ function PaintingDetail(){
                             </div>
                         </div>
                     </div> */}
+
                     
                         <div className="header"><h2>{painting.title}</h2></div>
                         <div className="description">{painting.materials}</div>
@@ -106,6 +107,18 @@ function PaintingDetail(){
                             }
                         </div>
                 </div>
+
+                    <div className="extra content">
+                        <div className="right floated author">
+                        { !painting.sold && 
+                            <Link to='/contact' className="ui teal labeled icon large button">
+                            <i className="shopping cart icon"></i>
+                            Purchase Inquiry
+                            </Link>
+                        }
+                        </div>
+                    </div>
+                    
             </div> 
             <div className="ui segment">
                     <div><CommentsList user={user} painting_id={painting.id}/></div>          

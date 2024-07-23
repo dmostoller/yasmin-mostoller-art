@@ -7,7 +7,7 @@ function Search({searchQ, onSearch, sortBy, selected, forSale, setForSale, selec
     }
 
 
-console.log(folders)
+// console.log(folders)
 
     const folderList = folders.map((folder) => {
         return (
