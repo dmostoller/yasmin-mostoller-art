@@ -4,6 +4,7 @@ import EditUser from "./EditUser";
 import Folder from "./Folder";
 import AddFolder from "./AddFolder";
 import { Button, Icon } from "semantic-ui-react";
+import {Link} from "react-router-dom";
 
 
 export default function User () {
@@ -76,8 +77,17 @@ export default function User () {
                         </div>
                     </div>
                 </div>
+                <div className="ui centered padded grid">
+                <Link target='_blank' to='https://analytics.google.com/analytics/web/?authuser=1#/p451159949/reports/intelligenthome'
+                    className='ui large teal labeled icon button'
+                >
+                <i className="chartline icon"></i>
+                Google Analytics
+                </Link>
             </div>
-        }
+            </div>
+            }
+
         <div className="ui container">
             <h4 className="ui horizontal divider">Folders</h4>
             <div className="ui centered grid" style={{marginTop: "25x"}}>

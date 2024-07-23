@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useUser } from "../context/user";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import {Link} from "react-router-dom";
+
 
 export default function EditUser ({setShowEdit}) {
     const [error, setError] = useState(null);
@@ -116,6 +118,14 @@ if(error) return (
                         </form>
                     </div>
                 </div>
+            </div>
+            <div className="ui centered padded grid">
+                <Link target='_blank' to='https://analytics.google.com/analytics/web/?authuser=1#/p451159949/reports/intelligenthome'
+                    className='ui large teal labeled icon button'
+                >
+                <i className="chartline icon"></i>
+                Google Analytics
+                </Link>
             </div>
         </div>
     );
