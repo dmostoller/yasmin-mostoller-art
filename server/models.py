@@ -71,7 +71,7 @@ class Painting(db.Model, SerializerMixin):
     folder_id = db.Column(db.Integer, db.ForeignKey('folders.id'))
     folder = db.relationship('Folder', back_populates='paintings')
 
-    serialize_rules = ('-comments.painting', '-folder.painting')
+    serialize_rules = ('-comments.painting', '-folder.paintings')
 
     def __repr__(self):
         return f'<Painting {self.id}>'
@@ -105,6 +105,9 @@ class Post(db.Model, SerializerMixin):
     date_added = db.Column(db.String)
 
     post_comments = db.relationship('PostComment', back_populates='post', cascade='all, delete')
+
+    serialize_rules = ('-post_comments.post', '-user.posts')
+
 
     def __repr__(self):
         return f'<Post {self.id}>'
