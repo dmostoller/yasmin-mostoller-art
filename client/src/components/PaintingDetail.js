@@ -111,7 +111,7 @@ function PaintingDetail(){
                     <div className="extra content">
                         <div className="right floated author">
                         { !painting.sold && 
-                            <Link to='/contact' className="ui teal labeled icon large button">
+                            <Link to='/contact' className="ui circular teal labeled icon large button">
                             <i className="shopping cart icon"></i>
                             Purchase Inquiry
                             </Link>
