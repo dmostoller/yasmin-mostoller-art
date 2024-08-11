@@ -7,6 +7,9 @@ import { useAdmin } from "../context/admin.js"
 import { Modal } from "semantic-ui-react";
 import PaintingModal from "./PaintingModal";
 import { Watermark } from '@hirohe/react-watermark';
+import axios from "axios";
+import fileDownload from "js-file-download"
+
 
 
 
@@ -43,6 +46,16 @@ function PaintingDetail(){
             })
         }
     }   
+
+    const handleDownload = (url, filename) => {
+        axios
+          .get(url, {
+            responseType: "blob"
+          })
+          .then((res) => {
+            fileDownload(res.data, filename);
+          });
+      };
 
 
     return (
@@ -99,6 +112,7 @@ function PaintingDetail(){
                                     <Link to={`/paintings/${id}/edit`} className="ui circular icon button large teal">
                                         <i className="edit icon"></i>
                                     </Link>
+
                                     <div className="ui circular icon button large teal" onClick={handleDeletePainting}>
                                         <i class="trash icon"></i>
                                     </div>
@@ -106,18 +120,35 @@ function PaintingDetail(){
                                 )   
                             }
                         </div>
-                </div>
 
+                </div>
+                { isAdmin || !painting.sold &&
                     <div className="extra content">
-                        <div className="right floated author">
+                    { isAdmin &&
+                        <div className="left floated author">
+                        <button 
+                            className="circular ui icon button labeled large teal"
+                            data-inverted="" data-tooltip="Download Painting" data-position="bottom center"
+                            onClick={() => {
+                                handleDownload(
+                                    `${painting.image}`,
+                                    `${painting.title}.jpg`
+                                    );
+                            }}>Download
+                            <i className="arrow circle down icon"></i>
+                        </button>
+                        </div>
+                        }
                         { !painting.sold && 
+                        <div className="right floated author">
                             <Link to='/contact' className="ui circular teal labeled icon large button">
                             <i className="shopping cart icon"></i>
                             Purchase Inquiry
                             </Link>
-                        }
                         </div>
+                        }
                     </div>
+            }
                     
             </div> 
             <div className="ui segment">
