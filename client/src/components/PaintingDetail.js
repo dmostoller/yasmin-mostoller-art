@@ -88,14 +88,21 @@ function PaintingDetail(){
                     </div>
                 </div>
                 <div className="content" style={{padding: "25px"}}>
-                    {/* <div class="right floated meta">
-                        <div className="ui teal message">
-                            <div className="header">
-                            <i className="folder icon"></i>
-                            {painting.folder.name}
-                            </div>
-                        </div>
-                    </div> */}
+                    <div class="right floated meta">
+                            { isAdmin &&
+                            <button 
+                                className="circular ui icon button right labeled large teal"
+                                data-inverted="" data-tooltip="Download Painting" data-position="bottom center"
+                                onClick={() => {
+                                    handleDownload(
+                                        `${painting.image}`,
+                                        `${painting.title}.jpg`
+                                        );
+                                }}>Download
+                                <i className="arrow circle down icon"></i>
+                            </button>
+                            }
+                    </div>
 
                     
                         <div className="header"><h2>{painting.title}</h2></div>
@@ -122,26 +129,12 @@ function PaintingDetail(){
                         </div>
 
                 </div>
-                { isAdmin || !painting.sold &&
+                { !painting.sold &&
                     <div className="extra content">
-                    { isAdmin &&
-                        <div className="left floated author">
-                        <button 
-                            className="circular ui icon button labeled large teal"
-                            data-inverted="" data-tooltip="Download Painting" data-position="bottom center"
-                            onClick={() => {
-                                handleDownload(
-                                    `${painting.image}`,
-                                    `${painting.title}.jpg`
-                                    );
-                            }}>Download
-                            <i className="arrow circle down icon"></i>
-                        </button>
-                        </div>
-                        }
+                    
                         { !painting.sold && 
                         <div className="right floated author">
-                            <Link to='/contact' className="ui circular teal labeled icon large button">
+                            <Link to='/contact' className="ui circular teal right labeled icon large button">
                             <i className="shopping cart icon"></i>
                             Purchase Inquiry
                             </Link>
