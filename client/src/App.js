@@ -30,7 +30,8 @@ import EditEvent from './components/EditEvent.js';
 import User from './components/User.js';
 import { useDevice } from './context/device.js';
 import { useFolders } from './context/folder.js';
-
+import Favicon from "react-favicon";
+import favUrl from './assets/favicon.ico'
 
 export default function App() {
   const { setUser } = useUser()
@@ -88,6 +89,7 @@ export default function App() {
             <Header onLogout={handleLogout}/>
         </div>
         <div className="ui container" style={{marginTop: "90px"}}>
+        <Favicon url={favUrl} />
             <ToastContainer/>
             <Routes>
                 <Route path="/" element={<HomePage />} />
