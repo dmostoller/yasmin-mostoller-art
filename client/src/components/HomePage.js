@@ -18,7 +18,7 @@ return (
         <>
             <div className="ui container fluid" style={{textAlign: "center"}}>
 
-                <Slider />
+                {/* <Slider /> */}
 
                     {/* <div className="ui left aligned text basic container segment">
                         <p>My name is Yasmin Mostoller, and I’m eager to share my art with the world, offering a unique vision of the galaxy's beauty through abstract expression. As a painter, I draw inspiration from the natural world's profound beauty and the mysteries it holds.</p>
@@ -28,7 +28,7 @@ return (
                         <p>Through my paintings, I seek to capture the moments that resonate with me, allowing imagination and emotion to shape my vibrant abstract creations.</p>
                     </div> */}
 
-                    {/* <SwiperHeader /> */}
+                    <SwiperHeader />
             </div>
             <p style={{textAlign: "center", marginTop:"15px", marginBottom: "0px"}}>"To draw, you must close your eyes and sing." <i> -Pablo Picasso</i></p>
         </>
