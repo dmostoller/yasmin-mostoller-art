@@ -14,7 +14,7 @@ export default function HomePage () {
 
 return (
     <div className="ui container fluid">
-        {/* {(deviceSize > 768) && */}
+        {(deviceSize > 768) &&
         <>
             <div className="ui container fluid" style={{textAlign: "center"}}>
 
@@ -32,7 +32,7 @@ return (
             </div>
             <p style={{textAlign: "center", marginTop:"15px", marginBottom: "0px"}}>"To draw, you must close your eyes and sing." <i> -Pablo Picasso</i></p>
         </>
-        {/* } */}
+        }
         <div className="ui container fluid"><PostsList user={user} isAdmin={isAdmin}/></div>
     </div>
 )
