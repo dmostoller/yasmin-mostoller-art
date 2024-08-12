@@ -91,15 +91,15 @@ function PaintingDetail(){
                     <div class="right floated meta">
                             { isAdmin &&
                             <button 
-                                className="circular ui icon button right labeled large teal"
+                                className="ui circular icon button large teal"
                                 data-inverted="" data-tooltip="Download Painting" data-position="bottom center"
                                 onClick={() => {
                                     handleDownload(
                                         `${painting.image}`,
                                         `${painting.title}.jpg`
                                         );
-                                }}>Download
-                                <i className="arrow circle down icon"></i>
+                                }}>
+                                <i className="download icon"></i>
                             </button>
                             }
                     </div>
