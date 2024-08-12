@@ -1,39 +1,49 @@
 import React from "react";
-import Slider from './Slider.js';
-import PostsList from "./PostsList.js";
 import { useUser } from "../context/user";
 import { useAdmin } from "../context/admin.js"
 import { useDevice } from "../context/device";
 import SwiperHeader from "./Swiper.js";
+import headerImg from "../assets/yasi-header.jpg"
+import {Link} from "react-router-dom";
+import { Button, Icon } from "semantic-ui-react";
 
 
 export default function HomePage () {
-    const { user } = useUser()
-    const { isAdmin } = useAdmin()
-    const {deviceSize} = useDevice()
 
 return (
-    <div className="ui container fluid">
-        {(deviceSize > 768) &&
+    <div className="ui container fluid" style={{minHeight: "90vh"}}>
         <>
-            <div className="ui container fluid" style={{textAlign: "center"}}>
-
-                {/* <Slider /> */}
-
-                    {/* <div className="ui left aligned text basic container segment">
-                        <p>My name is Yasmin Mostoller, and I’m eager to share my art with the world, offering a unique vision of the galaxy's beauty through abstract expression. As a painter, I draw inspiration from the natural world's profound beauty and the mysteries it holds.</p>
-                        <p>My work explores the intricate relationship between light, shadow, and atmosphere, using vibrant color, form, and texture to create immersive, multi-dimensional experiences. Whether timeless and elegant or modern and chaotic, the galaxy demands to be explored in all its facets.</p>
-                        <p>I layer paint meticulously to produce highly textured, three-dimensional pieces on canvas and paper. The colors, textures, and enigmatic qualities of the galaxy, its stars, planets, and celestial bodies serve as my primary inspiration.</p>
-                        <p>I believe in the power of creativity, imagination, and self-expression. Art, to me, has the potential to convey profound truths about our universe and humanity. It can evoke memories, transport us to new realms of thought and feeling, and offer fresh perspectives.</p>
-                        <p>Through my paintings, I seek to capture the moments that resonate with me, allowing imagination and emotion to shape my vibrant abstract creations.</p>
-                    </div> */}
-
-                    <SwiperHeader />
+            <div className="ui two column stackable grid">
+                <div className="column">
+                    <div className="ui left aligned text basic very padded segment">
+                        <h1 style={{fontSize: "3em"}}>I'm Yasmin,</h1>
+                            <h2>I believe in the power of creativity, imagination, and self-expression. 
+                                Art can evoke memories, transport us to new realms of thought and feeling, and offer fresh perspectives.</h2>
+                            <h2>Through my paintings, I seek to capture the moments that resonate with me, 
+                                allowing imagination and emotion to shape my vibrant abstract creations.</h2>
+                    </div>
+                    <div className="ui center aligned grid" style={{marginBottom: "25px"}}>
+                        <Link to='/paintings' className="ui massive basic circular teal button"> Explore My Paintings</Link>
+                    </div>
+                </div>
+                <div className="column">
+                {/* <SwiperHeader /> */}
+                <div className="ui center aligned grid">
+                    <div className="ui huge rounded image">
+                        <img src={headerImg} alt="header" />
+                    </div>
+                </div>
+                </div>
             </div>
-            <p style={{textAlign: "center", marginTop:"15px", marginBottom: "0px"}}>"To draw, you must close your eyes and sing." <i> -Pablo Picasso</i></p>
-        </>
-        }
-        <div className="ui container fluid"><PostsList user={user} isAdmin={isAdmin}/></div>
+            <h3 style={{textAlign: "center", marginTop:"75px", marginBottom: "0px"}}>
+                "To draw, you must close your eyes and sing." <i> -Pablo Picasso</i></h3>
+
+                {/* <div className="ui center aligned text container" style={{marginTop: "50px"}}>
+                <Link to='/contact' className="ui massive circular right labeled basic icon teal button"><i className="mail icon"></i>Get In Touch</Link>
+                </div> */}
+            </>
+    
+        
     </div>
 )
 }
