@@ -32,7 +32,7 @@ export default function Event ({id, name, venue, location, details, image_url, e
     return (
         <div className="ui container fluid">
             <div className="ui horizontal card fluid" style={{marginBottom: "15px"}}>
-                <div className="item">
+                {/* <div className="item">
                     <img className='ui large image' 
                     src={image_url} 
                     alt={name} 
@@ -46,7 +46,7 @@ export default function Event ({id, name, venue, location, details, image_url, e
                             >
                             <EventModal image={image_url} name={name}/>
                         </Modal>
-                </div>
+                </div> */}
                 <div className="content" style={{padding: "25px"}}>
                     <div className="header">{name}</div>
                     <div className="meta">{event_date}</div> 
