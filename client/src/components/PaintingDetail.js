@@ -60,15 +60,15 @@ function PaintingDetail(){
 
     return (
         <div className="ui container">
-            <div className="ui horizontal card fluid">
+            <div className="ui horizontal card fluid" style={{marginTop: "100px"}}>
 
                 <div className="item">
                     <div className="image">
-                    <Watermark 
+                    {/* <Watermark 
                         // textColor="#FFFFFF"
                         opacity={0.5}
                         gutter={20}
-                        text="© Yasmin Mostoller">
+                        text="© Yasmin Mostoller"> */}
                         <div>
                         <img className="ui large image" 
                             src={painting.image} 
@@ -77,10 +77,11 @@ function PaintingDetail(){
                             style={{borderRadius:"5px"}}>
                             </img>
                         </div>
-                    </Watermark>
+                    {/* </Watermark> */}
                         <Modal
                             open={modalOpen}
                             onClose={handleClose}
+                            dimmer='inverted'
                             basic={true}
                             >
                             <PaintingModal painting={painting}/>
@@ -112,8 +113,8 @@ function PaintingDetail(){
                             {painting.sold ? "SOLD" : <Link to="/contact">${painting.sale_price}</Link>}
                         </div>
                         <div style={{marginTop:"5px", padding: "10px"}} className="ui grid"> 
-                            <Link to="/paintings" className="ui circular icon button large teal" >
-                            <i className="undo icon"></i></Link>
+                            {/* <Link to="/paintings" className="ui circular icon button large teal" >
+                            <i className="undo icon"></i></Link> */}
                             { isAdmin && (
                                 <>
                                     <Link to={`/paintings/${id}/edit`} className="ui circular icon button large teal">

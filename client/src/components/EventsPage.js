@@ -39,20 +39,22 @@ function EventsPage () {
 
     return (
         <div className="ui container" style={{minHeight:"100vh"}}>
+                            <div style={{marginTop: "110px", marginBottom:  "20px", textAlign: "left"}} className="ui container">     
+
             {(user && isAdmin) &&  
-                <div style={{marginBottom:  "20px", textAlign: "right"}} className="ui container">     
                     <Link to={`/events/new`} className="ui animated fade circular icon button teal fluid" tabindex="0">
                             <div className="visible content"><i className="plus icon"></i></div>
                             <div className="hidden content">
                                 Create New Event
                             </div> 
                         </Link>
-                </div>
             }
-            <div className="ui container" style={{paddingTop:"5px"}}>
+            <div className="ui container" style={{marginTop:"25px"}}>
                 <div className="ui grid">{gallery}</div> 
             </div>
         </div>
+        </div>
+
     )
 }
 

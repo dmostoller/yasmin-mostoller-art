@@ -5,7 +5,7 @@ export default function AboutPage () {
 
 return (
     <div className="ui centered grid" style={{minHeight:"100vh"}}>
-    <div style={{width: "100%", margin: "auto"}} className="ui card">
+    <div style={{width: "100%", margin: "auto", marginTop: "20px"}} className="ui card">
         <div className="image">
             <img className="ui huge image" src="./images/slider2.jpg" alt="Yasmin Mostoller at the Jed William's Gallery"/>
         </div>
