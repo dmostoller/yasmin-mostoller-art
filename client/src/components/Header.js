@@ -20,7 +20,7 @@ function Header({ onLogout}) {
 
 // console.log(deviceSize)
    return ( 
-    <Menu className='ui top fixed borderless menu large'>
+    <Menu className='ui top fixed borderless menu huge'>
     {(deviceSize <= 768) && 
             <>
             <Dropdown     
