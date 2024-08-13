@@ -25,7 +25,7 @@ export default function Post ({id, title, content, image_url, video_url, date_ad
                     <div className="meta">{date_added}</div> 
                     <div className="description">{content}</div>
                     <div style={{paddingTop: "15px"}}> 
-                        <Link to={`/posts/${id}`}  className="ui circular icon button large teal"><i class="external alternate icon"></i></Link>
+                        <Link to={`/posts/${id}`}  className="ui circular icon button basic large teal"><i class="external alternate icon"></i></Link>
                         
                     </div>
                 </div>

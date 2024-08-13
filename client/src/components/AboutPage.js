@@ -34,7 +34,7 @@ return (
                 <Link to="https://www.facebook.com/yasminmostollerart" target="blank"  className="ui circular facebook icon large button" style={{marginTop: "5px", marginRight: "5px"}}>
                     <i className="facebook icon"></i>
                 </Link> 
-                <Link to="/contact" className="ui circular button large teal">Contact Me</Link>
+                <Link to="/contact" className="ui circular button large teal">Get In Touch</Link>
                 <Link to="https://www.instagram.com/yasminnunsy/" target="blank"  className="ui circular icon purple large button" style={{marginTop: "5px", marginRight: "5px"}}>
                     <i className="instagram icon"></i>
                 </Link>

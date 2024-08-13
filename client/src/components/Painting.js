@@ -8,15 +8,15 @@ export default function Painting ({image, title, sold, width, height, materials,
 
             <Link to={`/paintings/${id}`} className="ui centered card" style={{marginBottom: "15px"}}>
                 <div className="image">
-                <Watermark 
+                {/* <Watermark 
                     // textColor="#FFFFFF"
                     opacity={0.5}
                     gutter={20}
-                    text="© Yasmin Mostoller">
+                    text="© Yasmin Mostoller"> */}
                     <div>
                         <img className="ui image" src={image} alt={title}></img>
                     </div>
-                </Watermark>
+                {/* </Watermark> */}
                 </div>
                 <div className="content">
                     <div className="header">{title}</div>
