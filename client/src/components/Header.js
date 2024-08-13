@@ -65,19 +65,19 @@ function Header({ onLogout}) {
             <div className="item">
                 { !user ? (
                     <>
-                    <Link to='/login' style={{marginRight: '3px'}} data-tooltip="Login" data-position="bottom center" className="ui circular teal icon button large">
+                    <Link to='/login' style={{marginRight: '3px'}} data-tooltip="Login" data-position="bottom center" className="ui circular teal icon basic button huge">
                         <i className="sign in alternate icon"></i>
                     </Link>
-                    <Link to='/signup' style={{marginRight: '3px'}} data-tooltip="Sign Up" data-position="bottom right" className="ui circular teal icon button large">
-                        <i className="plus icon"></i>
+                    <Link to='/signup' style={{marginRight: '3px'}} data-tooltip="Sign Up" data-position="bottom right" className="ui circular teal icon basic button huge">
+                        <i className="user plus icon"></i>
                     </Link>
                     </>
                 ) : (
                     <>
-                    <button onClick={handleLogout} style={{marginRight: '3px'}} data-inverted="" data-tooltip="Logout" data-position="bottom center" className="ui circular teal icon button large">
+                    <button onClick={handleLogout} style={{marginRight: '3px'}} data-inverted="" data-tooltip="Logout" data-position="bottom center" className="ui circular teal basic icon button huge">
                         <i className="sign out alternate icon"></i>
                     </button>
-                    <Link to='/user' style={{marginRight: '3px'}} data-inverted="" data-tooltip="User Profile" data-position="bottom right" className="ui circular teal icon button large">
+                    <Link to='/user' style={{marginRight: '3px'}} data-inverted="" data-tooltip="User Profile" data-position="bottom right" className="ui circular teal icon basic button huge">
                         <i className="user icon"></i>
                     </Link>
                     </>

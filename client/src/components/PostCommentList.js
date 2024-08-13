@@ -50,7 +50,7 @@ function PostCommentsList({user, post_id}){
                  : 
                  <div 
                     onClick={changeIsComFormVis} 
-                    className="ui circular fluid animated fade button teal tiny" tabindex="0">
+                    className="ui circular fluid animated fade basic button teal tiny" tabindex="0">
                     <div className="visible content"><i className="plus icon"></i></div>
                     <div className="hidden content">
                         New Comment
