@@ -61,7 +61,7 @@ if(error) return (
      <div className="ui center aligned grid" style={{minHeight:"100vh"}}>
        <div className="column" style={{width:"450px"}}>
        <h4 className="ui image header">
-           <div className="content"><span className="ui red text">{error}</span></div>
+           <div className="content" style={{marginTop: "110px"}}><span className="ui red text">{error}</span></div>
        </h4>
        <button onClick={tryAgain} className="ui circular fluid button large grey" type="submit">Try Again</button>
      </div>
@@ -72,7 +72,7 @@ if(error) return (
     <div className="ui center aligned grid" style={{minHeight:"100vh"}}>
             <div className="column" style={{width:"450px"}}>
             <h2 className="ui image header">
-          <div className="content">Create a new account</div>
+          <div className="content" style={{marginTop: "110px"}}>Create a new account</div>
         </h2>
         <form className="ui form" onSubmit={formik.handleSubmit}>
             <div className="field">

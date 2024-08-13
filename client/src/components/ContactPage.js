@@ -6,7 +6,7 @@ export default function ContactPage () {
 
 return (
     <div style={{minHeight:"100vh"}}>
-    <div className="ui text container" style={{textAlign: "center", marginTop: "100px"}}>
+    <div className="ui text container" style={{textAlign: "center", marginTop: "150px"}}>
         <h1 className="header">Get In Touch</h1>
         <h3>Purchase a painting or commission a custom work.</h3>    
             <p>

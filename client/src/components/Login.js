@@ -45,7 +45,7 @@ function LoginForm({ onLogin }) {
      <div className="ui center aligned grid" style={{minHeight:"100vh"}}>
        <div className="column" style={{width:"450px"}}>
        <h4 className="ui image header">
-           <div className="content"><span className="ui red text">{error}</span></div>
+           <div className="content" style={{marginTop: "110px"}}><span className="ui red text">{error}</span></div>
        </h4>
        <button onClick={tryAgain} className="ui fluid button large grey"ß>Try Again</button>
      </div>
@@ -57,7 +57,7 @@ function LoginForm({ onLogin }) {
     <div className="ui center aligned grid" style={{minHeight:"100vh"}}>
       <div className="column" style={{width:"450px"}}>
         <h2 className="ui image header">
-          <div className="content">Log-in to your account</div>
+          <div className="content" style={{marginTop: "110px"}}>Log-in to your account</div>
         </h2>
         <form className="ui form initial" onSubmit={formik.handleSubmit}>
             <div className="field">
