@@ -64,7 +64,7 @@ export default function User () {
             {showEdit ? 
             <EditUser setShowEdit={showEditForm}/> 
             :
-            <div className="ui container" style={{marginTop: "5px"}}>
+            <div className="ui container" style={{marginTop: "50px"}}>
                 <h4 className="ui horizontal divider">My Account</h4>
                 <div className="ui centered grid">
                     <div className="ui card" style={{margin: "25px"}}>

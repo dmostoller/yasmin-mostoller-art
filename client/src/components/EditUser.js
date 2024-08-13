@@ -60,7 +60,7 @@ if(error) return (
      <div className="ui center aligned grid" style={{minHeight:"100vh"}}>
        <div className="column" style={{width:"450px"}}>
        <h4 className="ui image header">
-           <div className="content"><span className="ui red text">{error}</span></div>
+           <div className="content" style={{marginTop: "50px"}}><span className="ui red text">{error}</span></div>
        </h4>
        <button onClick={tryAgain} className="ui circular fluid button large grey">Try Again</button>
      </div>
@@ -69,7 +69,7 @@ if(error) return (
    </>)
 
     return (
-        <div className="ui inverted container" style={{marginTop: "5px"}}>
+        <div className="ui inverted container" style={{marginTop: "50px"}}>
             <h4 className="ui horizontal divider">My Account</h4>
             <div className="ui centered grid">
                 <div className="ui card" style={{margin: "25px"}}>
