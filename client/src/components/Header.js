@@ -2,12 +2,14 @@ import { NavLink, Link } from "react-router-dom";
 import { useUser } from "../context/user";
 import { DropdownMenu, Dropdown, Menu, MenuItem } from 'semantic-ui-react'
 import { useDevice } from "../context/device";
+// import { useAdmin } from "../context/admin";
 import Logo from "../assets/logo.jpeg"
 import oldLogo from "../assets/yasi-logo-1.png"
 
 
 function Header({ onLogout}) {
     const { user } = useUser();
+    // const { isAdmin } = useAdmin();
     const {deviceSize} = useDevice();
 
   function handleLogout() {
@@ -23,17 +25,16 @@ function Header({ onLogout}) {
             <>
             <Dropdown     
             icon='large hamburger'
-            style={{padding: "1.3em"}}
+            style={{paddingLeft: "1em", paddingRight: "1em", paddingTop: "2em"}}
             floating
             className='dropdown icon'>
                 <DropdownMenu>
                     <NavLink to="/" className="item" style={{width: "200px"}}><h3>Home</h3></NavLink>
+                    <NavLink to="/gallery" className="item" ><h3>Gallery</h3></NavLink>
                     <NavLink to="/paintings" className="item" ><h3>Paintings</h3></NavLink>
                     <NavLink to="/events" className="item" ><h3>Exhibitions</h3></NavLink>
                     <NavLink to="/blog" className="item"><h3>News</h3></NavLink>
                     <NavLink to="/about" className="item" ><h3>Bio</h3></NavLink>
-                    
-                    
                     <NavLink to="/contact" className="item" ><h3>Contact</h3></NavLink>
                 </DropdownMenu>
             </Dropdown>
@@ -44,7 +45,7 @@ function Header({ onLogout}) {
         <Link to="/">
         <MenuItem header style={{padding: "1px"}}>
         {/* <img alt="logo" src={oldLogo} style={{width: "110px", margin: "0px"}}></img> */}
-        <img alt="logo" src={Logo} style={{width: "50px", margin: "5px"}}></img>
+        <img alt="logo" src={Logo} style={{width: "70px", margin: "5px"}}></img>
             
         </MenuItem>
         </Link>
@@ -52,6 +53,7 @@ function Header({ onLogout}) {
         {(deviceSize > 768) &&
         <>
         <NavLink to="/" className="item" >Home</NavLink>
+        <NavLink to="/gallery" className="item" >Gallery</NavLink>
         <NavLink to="/paintings" className="item" >Paintings</NavLink>
         <NavLink to="/events" className="item" >Exhibitions</NavLink>
         <NavLink to="/blog" className="item">News</NavLink>

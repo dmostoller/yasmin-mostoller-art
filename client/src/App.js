@@ -33,6 +33,7 @@ import { useFolders } from './context/folder.js';
 import Favicon from "react-favicon";
 import favUrl from './assets/favicon.ico'
 import Blog from './components/Blog.js';
+import Gallery from './components/Gallery.js';
 
 export default function App() {
   const { setUser } = useUser()
@@ -111,6 +112,7 @@ export default function App() {
                 <Route path="/login" element={<LoginForm onLogin={handleLogin}/>} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/blog" element={<Blog/>}/>
+                <Route path="/gallery" element={<Gallery/>}/>
             </Routes>
         </div>
         <div>

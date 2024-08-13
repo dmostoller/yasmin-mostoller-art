@@ -20,6 +20,7 @@ function PaintingDetail(){
     const {id} = useParams();
     const navigate = useNavigate()
     const [modalOpen, setModalOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     function handleOpen() {
         setModalOpen(true)
@@ -35,7 +36,8 @@ function PaintingDetail(){
         .then((painting) => setPainting(painting))
     }, [id]);
 
-    
+    // console.log(painting.image)
+
     const handleDeletePainting = (e) => {
         if (window.confirm("Are you sure you want to delete this painting?")) {
         fetch(`/painting/${id}`, {
@@ -60,15 +62,15 @@ function PaintingDetail(){
 
     return (
         <div className="ui container">
-            <div className="ui horizontal card fluid">
+            <div className="ui horizontal card fluid" style={{marginTop: "100px"}}>
 
                 <div className="item">
                     <div className="image">
-                    <Watermark 
+                    {/* <Watermark 
                         // textColor="#FFFFFF"
                         opacity={0.5}
                         gutter={20}
-                        text="© Yasmin Mostoller">
+                        text="© Yasmin Mostoller"> */}
                         <div>
                         <img className="ui large image" 
                             src={painting.image} 
@@ -77,10 +79,11 @@ function PaintingDetail(){
                             style={{borderRadius:"5px"}}>
                             </img>
                         </div>
-                    </Watermark>
+                    {/* </Watermark> */}
                         <Modal
                             open={modalOpen}
                             onClose={handleClose}
+                            dimmer='inverted'
                             basic={true}
                             >
                             <PaintingModal painting={painting}/>
@@ -102,6 +105,14 @@ function PaintingDetail(){
                                 <i className="download icon"></i>
                             </button>
                             }
+                             { !painting.sold && !isAdmin &&
+                            <div className="right floated author">
+                                <Link to='/contact' className="ui teal right floated basic icon large button">
+                                
+                                Purchase Inquiry
+                                </Link>
+                            </div>
+                            }
                     </div>
 
                     
@@ -112,8 +123,8 @@ function PaintingDetail(){
                             {painting.sold ? "SOLD" : <Link to="/contact">${painting.sale_price}</Link>}
                         </div>
                         <div style={{marginTop:"5px", padding: "10px"}} className="ui grid"> 
-                            <Link to="/paintings" className="ui circular icon button large teal" >
-                            <i className="undo icon"></i></Link>
+                            {/* <Link to="/paintings" className="ui circular icon button large teal" >
+                            <i className="undo icon"></i></Link> */}
                             { isAdmin && (
                                 <>
                                     <Link to={`/paintings/${id}/edit`} className="ui circular icon button large teal">
@@ -127,26 +138,44 @@ function PaintingDetail(){
                                 )   
                             }
                         </div>
-
-                </div>
-                { !painting.sold &&
-                    <div className="extra content">
+                        <div>
                     
-                        { !painting.sold && 
-                        <div className="right floated author">
-                            <Link to='/contact' className="ui circular teal right labeled icon large button">
-                            <i className="shopping cart icon"></i>
-                            Purchase Inquiry
-                            </Link>
-                        </div>
-                        }
-                    </div>
-            }
+                   
+                </div>
+                </div>
+               
                     
             </div> 
-            <div className="ui segment">
-                    <div><CommentsList user={user} painting_id={painting.id}/></div>          
-            </div>
+            
+ 
+            
+                {isOpen ?
+                <div className="ui segment">
+                    
+                    <div>
+                        <div className="ui left floated vertical animated fade basic teal button" onClick={() => setIsOpen(false)} tabindex="0">
+                            <div className="hidden content"> Hide </div>
+                            <div className="visible content">
+                                <i className="ui angle double up icon"></i> 
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <CommentsList user={user} painting_id={painting.id}/>
+                    </div>    
+                </div>
+
+                    :
+                    <div>
+                        <div className="ui vertical animated basic teal button" onClick={() => setIsOpen(true)} tabindex="0">
+                            <div className="hidden content"> Comment </div>
+                            <div className="visible content">
+                                <i className="ui large angle double down icon"></i> 
+                            </div>
+                        </div>
+                    </div>
+                }      
+            
         </div>
     );
 }

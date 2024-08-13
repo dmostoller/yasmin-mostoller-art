@@ -87,7 +87,7 @@ function PostDetail(){
                         <p>{post.content}</p>
                     </div>
                     <div style={{padding: "10px"}}> 
-                        <Link to="/" className="ui circular icon button large teal">
+                        <Link to="/blog" className="ui circular icon button large teal">
                         <i className="undo icon"></i>
                         </Link>
                         { user && isAdmin && (

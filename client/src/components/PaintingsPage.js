@@ -98,7 +98,7 @@ function PaintingsPage () {
 
     return (
         <div className="ui container fluid" style={{minHeight:"100vh"}}>
-            <div className="ui container fluid">
+            <div className="ui container fluid" style={{marginTop: "110px"}}>
                 <Search 
                     searchQ={searchQ} onSearch={setSearchQ} 
                     selected={sortBy} sortBy={handleSortBy} 
