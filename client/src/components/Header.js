@@ -21,6 +21,15 @@ function Header({ onLogout}) {
 // console.log(deviceSize)
    return ( 
     <Menu className='ui top fixed borderless menu huge'>
+     {/* <Link to="/" className="header item" >YASMIN MOSTOLLER</Link> */}
+     <Link to="/">
+        <MenuItem header style={{padding: "3px"}}>
+        {/* <img alt="logo" src={oldLogo} style={{width: "110px", margin: "0px"}}></img> */}
+        <img alt="logo" src={Logo} style={{width: "70px", margin: "5px"}}></img>
+            
+        </MenuItem>
+        </Link>
+   
     {(deviceSize <= 768) && 
             <>
             <Dropdown     
@@ -29,8 +38,7 @@ function Header({ onLogout}) {
             floating
             className='dropdown icon'>
                 <DropdownMenu>
-                    <NavLink to="/" className="item" style={{width: "200px"}}><h3>Home</h3></NavLink>
-                    <NavLink to="/gallery" className="item" ><h3>Gallery</h3></NavLink>
+                    <NavLink to="/gallery" className="item" style={{width: "250px"}}><h3>Gallery</h3></NavLink>
                     <NavLink to="/paintings" className="item" ><h3>Paintings</h3></NavLink>
                     <NavLink to="/events" className="item" ><h3>Exhibitions</h3></NavLink>
                     <NavLink to="/blog" className="item"><h3>News</h3></NavLink>
@@ -41,18 +49,10 @@ function Header({ onLogout}) {
             </>
         }
             
-        {/* <Link to="/" className="header item" >YASMIN MOSTOLLER</Link> */}
-        <Link to="/">
-        <MenuItem header style={{padding: "1px"}}>
-        {/* <img alt="logo" src={oldLogo} style={{width: "110px", margin: "0px"}}></img> */}
-        <img alt="logo" src={Logo} style={{width: "70px", margin: "5px"}}></img>
-            
-        </MenuItem>
-        </Link>
+      
         
         {(deviceSize > 768) &&
         <>
-        <NavLink to="/" className="item" >Home</NavLink>
         <NavLink to="/gallery" className="item" >Gallery</NavLink>
         <NavLink to="/paintings" className="item" >Paintings</NavLink>
         <NavLink to="/events" className="item" >Exhibitions</NavLink>
