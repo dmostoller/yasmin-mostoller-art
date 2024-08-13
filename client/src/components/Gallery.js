@@ -17,17 +17,24 @@ import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 export default function Gallery() {
     const [paintings, setPaintings] = useState([])
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
+
         fetch(`/painting`)
         .then((res) => res.json())
-        .then((paintings) => {setPaintings(paintings)})
+        .then((paintings) => {
+            setPaintings(paintings)
+            setLoading(false)
+        })
       }, []);
 
       const gallery = paintings.map((painting) => {
         return (
             <SwiperSlide>
-                <img className='ui huge image' src={painting.image}></img>
+                <div className='ui huge image'>
+                    <img className='image' src={painting.image}></img>
+                </div>
                 <div className="ui left aligned very basic padded segment">
                 <h1 style={{marginBottom: "0px"}}> {painting.title} </h1>
                 <h4 style={{marginBottom: "0px", marginTop: "5px"}}>{painting.materials}</h4>
@@ -40,21 +47,32 @@ export default function Gallery() {
     const thumbGallery = paintings.map((painting) => {
         return (
             <SwiperSlide>
-                <img className='ui huge image' src={painting.image}></img>
+                <img className='ui medium image' src={painting.image}></img>
             </SwiperSlide>
         )
     })
 
     return (
+        <div className='ui container' style={{marginTop: "100px", minHeight: "200vh"}}>
+        <div className='ui container' style={{height: "900px", width: "1200px"}}>
+        <div className='ui container'>
+        { loading ?
+        <div class="ui center aligned segment" style={{minHeight: "90vh"}}>
+            <div class="ui active inverted dimmer">
+                <div class="ui massive active slow blue double text loader">
+                    Loading
+                </div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+        </div>
+        :
         <>
         <Swiper
-        //   style={{
-        //     '--swiper-navigation-color': '#fff',
-        //     '--swiper-pagination-color': '#fff',
-        //   }}
           loop={true}
           autoHeight={true}
-          spaceBetween={10}
+          spaceBetween={100}
           navigation={true}
           thumbs={{ swiper: thumbsSwiper }}
           modules={[FreeMode, Navigation, Thumbs]}
@@ -74,6 +92,11 @@ export default function Gallery() {
         >
             {thumbGallery}
         </Swiper>
-      </>
+        </>
+    }
+      </div>
+      </div>
+      </div>
+    
     )
 }

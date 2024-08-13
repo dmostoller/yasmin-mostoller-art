@@ -7,7 +7,7 @@ return (
     <div className="ui centered grid" style={{minHeight:"100vh"}}>
     <div style={{width: "100%", margin: "auto", marginTop: "20px"}} className="ui card">
         <div className="image">
-            <img className="ui huge image" src="./images/slider2.jpg" alt="Yasmin Mostoller at the Jed William's Gallery"/>
+            <img className="ui large image" src="./images/slider2.jpg" alt="Yasmin Mostoller at the Jed William's Gallery"/>
         </div>
         <div className="content">
             <div className="header">
@@ -16,11 +16,21 @@ return (
             <div className="meta">
                 <span className="category">Philadelphia, PA</span>
             </div>
-            <div className="description">
-                <p>	Yasmin is a Persian artist currently living in Philadelphia, PA.  After growing up with a love for the visual arts, Yasmin studied painting and fine art, recieving both Bachelor's and Master's degrees.  Her work has been shown internationally, with shows in the USA, Iran, France, Spain, India, and Germany.             
-                <br></br>Yasmin's works are an exploration of abstract ideas, stemming from a unique perspective on space and motion. Utilizing various techniques and methods for applying paint, Yasmin has created whole worlds within her canvases. Bright, colorful, and energetic vistas into a unique universe derived from a global perspective and a reach into the unknown.</p>
+            <div className="description" >
+                    <p>
+                        Persian artist Yasmin Mostoller grew up surrounded by intricate murals, mosaics, and tapestries. 
+                        Later earning a Bachelor of Arts and a Masters of Fine Arts, Mostoller currently lives and works in Philadelphia, USA.
+                    </p>
+                    <p>
+                        Yasmin's large-scale paintings eschew a monolithic approach to abstract painting, instead treating the canvas as a layered three-dimensional landscape, 
+                        emphasizing movement and connectivity.  Bright, colorful, and energetic vistas bend traditional iconography into futuristic hallucinations, 
+                        imagining invisible planetary forces and hybrid human cultures.
+                    </p>
+                    <p>
+                        Her work has been shown internationally, with shows in the USA, Iran, France, Spain, India, and Germany.
+                    </p>
             </div>
-            <div>
+            <div style={{marginBottom: "25px", marginTop: "25px"}}>
                 <Link to="https://www.facebook.com/yasminmostollerart" target="blank"  className="ui circular facebook icon large button" style={{marginTop: "5px", marginRight: "5px"}}>
                     <i className="facebook icon"></i>
                 </Link> 

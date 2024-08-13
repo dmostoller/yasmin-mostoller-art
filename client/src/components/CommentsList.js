@@ -42,7 +42,7 @@ function CommentsList({user, painting_id}){
     
     return (
         <div className="ui text container">
-            <h3 style={{paddingTop: "15px"}}className="ui dividing header">Comments</h3>  
+            <h3 style={{paddingTop: "15px"}}className="ui right aligned dividing header">Comments</h3>  
             {commentsSection}
             {user ? 
             <div style={{paddingBottom: "25px", paddingTop: "10px"}}>
@@ -50,7 +50,7 @@ function CommentsList({user, painting_id}){
                  : 
                  <div 
                     onClick={changeIsComFormVis} 
-                    className="ui circular fluid animated fade button teal tiny" tabindex="0">
+                    className="ui circular fluid animated fade basic button teal tiny" tabindex="0">
                     <div className="visible content"><i className="plus icon"></i></div>
                     <div className="hidden content">
                         New Comment
