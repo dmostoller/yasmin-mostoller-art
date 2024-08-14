@@ -24,6 +24,7 @@
     "react-multi-carousel": "^2.8.5",
     "react-router-dom": "^6.22.2",
     "react-scripts": "5.0.1",
+    "react-snap": "^1.23.0",
     "react-toastify": "^10.0.5",
     "semantic-ui-react": "^2.1.5",
     "styled-components": "^6.1.8",
@@ -36,7 +37,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && react-snap",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -57,5 +58,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "reactSnap": {
+  "inlineCss": true,
+  "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
+  "sourceMaps": false,
+  "removeStyleTags": false,
+  "removeScriptTags": false,
+  "minifyHtml": {
+    "collapseWhitespace": true
+  },
+  "preloadResources": true
+}
 }
