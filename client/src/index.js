@@ -8,18 +8,23 @@ import { AdminProvider } from "./context/admin";
 import { DeviceProvider } from './context/device';
 import { FoldersProvider } from './context/folder';
 
+import { HelmetProvider } from 'react-helmet-async';
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <Router>
-        <DeviceProvider>
-            <UserProvider>
-                <AdminProvider>
-                    <FoldersProvider>
-                        <App />
-                    </FoldersProvider>
-                </AdminProvider>
-            </UserProvider>
-        </DeviceProvider>
-    </Router>
+    <HelmetProvider>
+        <Router>
+            <DeviceProvider>
+                <UserProvider>
+                    <AdminProvider>
+                        <FoldersProvider>
+                            <App />
+                        </FoldersProvider>
+                    </AdminProvider>
+                </UserProvider>
+            </DeviceProvider>
+        </Router>
+    </HelmetProvider>
 );
 
