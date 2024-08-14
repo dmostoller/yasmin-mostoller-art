@@ -57,12 +57,12 @@ export default function Gallery() {
     return (
         <div className='ui container' style={{marginTop: "100px", minHeight: "200vh"}}>
             <SEO
-            title="Yasmin Mostoller | Abstract Artist"
+            title="Yasmin Mostoller | Gallery"
             description="Imagination and Emotion"
             name="Yasmin Mostoller"
             type="website"
             image="https://yasminmostoller.com/images/slider2.jpg"
-            url="https://yasminmostoller.com/"
+            url="https://yasminmostoller.com/gallery"
             />
         <div className='ui container' style={{height: "900px", width: "1200px"}}>
         <div className='ui container'>

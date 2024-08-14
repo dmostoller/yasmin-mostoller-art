@@ -7,12 +7,12 @@ export default function AboutPage () {
 return (
     <div className="ui centered grid" style={{minHeight:"100vh"}}>
             <SEO
-            title="Yasmin Mostoller | Abstract Artist"
+            title="Yasmin Mostoller | About Me"
             description="Imagination and Emotion"
             name="Yasmin Mostoller"
             type="website"
             image="https://yasminmostoller.com/images/slider2.jpg"
-            url="https://yasminmostoller.com/"
+            url="https://yasminmostoller.com/about"
             />
     <div style={{width: "100%", margin: "auto", marginTop: "20px"}} className="ui card">
         <div className="image">

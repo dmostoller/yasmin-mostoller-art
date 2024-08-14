@@ -9,6 +9,7 @@ import PaintingModal from "./PaintingModal";
 import { Watermark } from '@hirohe/react-watermark';
 import axios from "axios";
 import fileDownload from "js-file-download"
+import SEO from './SEO.js';
 
 
 
@@ -62,8 +63,16 @@ function PaintingDetail(){
 
     return (
         <div className="ui container">
-            <div className="ui horizontal card fluid" style={{marginTop: "100px"}}>
 
+            <SEO
+            title={painting.title}
+            description={painting.content}
+            name="Yasmin Mostoller"
+            type="website"
+            image={painting.image}
+            url={`https://yasminmostoller.com/paintings/${id}`}
+            />
+            <div className="ui horizontal card fluid" style={{marginTop: "100px"}}>
                 <div className="item">
                     <div className="image">
                     {/* <Watermark 

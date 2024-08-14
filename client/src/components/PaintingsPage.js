@@ -101,12 +101,12 @@ function PaintingsPage () {
     return (
         <div className="ui container fluid" style={{minHeight:"100vh"}}>
             <SEO
-            title="Yasmin Mostoller | Abstract Artist"
+            title="Yasmin Mostoller | Paintings"
             description="Imagination and Emotion"
             name="Yasmin Mostoller"
             type="website"
             image="https://yasminmostoller.com/images/slider2.jpg"
-            url="https://yasminmostoller.com/"
+            url="https://yasminmostoller.com/paintings"
             />
             <div className="ui container fluid" style={{marginTop: "110px"}}>
                 <Search 
