@@ -68,6 +68,7 @@
   "minifyHtml": {
     "collapseWhitespace": true
   },
-  "preloadResources": true
+  "preloadImages": true, 
+  "cacheAjaxRequests": true
 }
 }
