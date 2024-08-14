@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useUser } from "../context/user";
 import { useAdmin } from "../context/admin.js"
 import Event from "./Event.js";
+import SEO from './SEO.js';
 
 
 function EventsPage () {
@@ -39,7 +40,15 @@ function EventsPage () {
 
     return (
         <div className="ui container" style={{minHeight:"100vh"}}>
-                            <div style={{marginTop: "110px", marginBottom:  "20px", textAlign: "left"}} className="ui container">     
+            <SEO
+            title="Yasmin Mostoller | Exhibitions"
+            description="Imagination and Emotion"
+            name="Yasmin Mostoller"
+            type="website"
+            image="https://yasminmostoller.com/images/slider2.jpg"
+            url="https://yasminmostoller.com/events"
+            />
+            <div style={{marginTop: "110px", marginBottom:  "20px", textAlign: "left"}} className="ui container">     
 
             {(user && isAdmin) &&  
                     <Link to={`/events/new`} className="ui animated fade circular icon button teal fluid" tabindex="0">

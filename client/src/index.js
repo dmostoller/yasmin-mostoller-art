@@ -8,13 +8,17 @@ import { AdminProvider } from "./context/admin";
 import { DeviceProvider } from './context/device';
 import { FoldersProvider } from './context/folder';
 
+
 import { HelmetProvider } from 'react-helmet-async';
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const container = document.getElementById('root');
+const root = ReactDOM.createRoot(container);
+
+
 root.render(
     <HelmetProvider>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
             <DeviceProvider>
                 <UserProvider>
                     <AdminProvider>
