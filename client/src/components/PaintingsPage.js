@@ -6,6 +6,8 @@ import { useUser } from "../context/user";
 import { useAdmin } from "../context/admin.js"
 import { Button, Icon } from "semantic-ui-react";
 import AddFolder from "./AddFolder.js";
+import SEO from './SEO.js';
+
 
 function PaintingsPage () {
     const { user } = useUser()
@@ -98,6 +100,14 @@ function PaintingsPage () {
 
     return (
         <div className="ui container fluid" style={{minHeight:"100vh"}}>
+            <SEO
+            title="Yasmin Mostoller | Abstract Artist"
+            description="Imagination and Emotion"
+            name="Yasmin Mostoller"
+            type="website"
+            image="https://yasminmostoller.com/images/slider2.jpg"
+            url="https://yasminmostoller.com/"
+            />
             <div className="ui container fluid" style={{marginTop: "110px"}}>
                 <Search 
                     searchQ={searchQ} onSearch={setSearchQ} 

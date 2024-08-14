@@ -1,10 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SEO from './SEO.js';
 
 export default function AboutPage () {
 
 return (
     <div className="ui centered grid" style={{minHeight:"100vh"}}>
+            <SEO
+            title="Yasmin Mostoller | Abstract Artist"
+            description="Imagination and Emotion"
+            name="Yasmin Mostoller"
+            type="website"
+            image="https://yasminmostoller.com/images/slider2.jpg"
+            url="https://yasminmostoller.com/"
+            />
     <div style={{width: "100%", margin: "auto", marginTop: "20px"}} className="ui card">
         <div className="image">
             <img className="ui large image" src="./images/slider2.jpg" alt="Yasmin Mostoller at the Jed William's Gallery"/>

@@ -12,8 +12,11 @@ import { HelmetProvider } from 'react-helmet-async';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const helmetContext = {};
+
 root.render(
-    <HelmetProvider>
+    <HelmetProvider context={helmetContext}>
         <Router>
             <DeviceProvider>
                 <UserProvider>

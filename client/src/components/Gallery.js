@@ -10,6 +10,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 
 import './styles.css';
+import SEO from './SEO.js';
+
 
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
@@ -54,6 +56,14 @@ export default function Gallery() {
 
     return (
         <div className='ui container' style={{marginTop: "100px", minHeight: "200vh"}}>
+            <SEO
+            title="Yasmin Mostoller | Abstract Artist"
+            description="Imagination and Emotion"
+            name="Yasmin Mostoller"
+            type="website"
+            image="https://yasminmostoller.com/images/slider2.jpg"
+            url="https://yasminmostoller.com/"
+            />
         <div className='ui container' style={{height: "900px", width: "1200px"}}>
         <div className='ui container'>
         { loading ?

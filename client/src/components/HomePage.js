@@ -2,12 +2,21 @@ import React from "react";
 
 import headerImg from "../assets/yasi-header.jpg"
 import {Link} from "react-router-dom";
+import SEO from './SEO.js';
 
 
 export default function HomePage () {
 
 return (
     <div className="ui container fluid" style={{minHeight: "90vh"}}>
+        <SEO
+            title="Yasmin Mostoller | Abstract Artist"
+            description="Imagination and Emotion"
+            name="Yasmin Mostoller"
+            type="website"
+            image="https://yasminmostoller.com/images/slider2.jpg"
+            url="https://yasminmostoller.com/"
+            />
         <>
             <div className="ui two column stackable grid" style={{marginTop: "100px"}}>
                 <div className="column">
