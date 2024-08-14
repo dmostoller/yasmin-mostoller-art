@@ -61,7 +61,7 @@ function PostDetail(){
             title={post.title}
             description={post.content}
             name="Yasmin Mostoller"
-            type="blog"
+            type="website"
             image={post.image_url}
             url={`https://yasminmostoller.com/posts/${id}`}
             />
