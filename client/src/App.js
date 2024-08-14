@@ -34,6 +34,8 @@ import Favicon from "react-favicon";
 import favUrl from './assets/favicon.ico'
 import Blog from './components/Blog.js';
 import Gallery from './components/Gallery.js';
+import { HelmetProvider } from 'react-helmet-async';
+
 
 export default function App() {
   const { setUser } = useUser()
@@ -86,6 +88,7 @@ export default function App() {
 
 
   return (
+    <HelmetProvider>
     <div className='ui fluid container' style={{minHeight: "100vh"}}>
         <div>
             <Header onLogout={handleLogout}/>
@@ -119,6 +122,7 @@ export default function App() {
             <Footer />
         </div>
     </div>
+    </HelmetProvider>
     
   );
 }

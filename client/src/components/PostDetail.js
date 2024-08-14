@@ -7,6 +7,9 @@ import { Modal } from "semantic-ui-react";
 import PostModal from "./PostModal.js";
 import PostCommentsList from "./PostCommentList.js";
 import VideoPlayer from "./VideoPlayer";
+import SEO from './SEO.js';
+
+
 
 function PostDetail(){
     const { user } = useUser()
@@ -17,7 +20,6 @@ function PostDetail(){
     const [modalOpen, setModalOpen] = useState(false);
     const [videoUrl, setVideoUrl] = useState(null);
     const [imageUrl, setImageUrl] = useState(null);
-
 
 
     function handleOpen() {
@@ -55,6 +57,14 @@ function PostDetail(){
 
     return (
         <div className="ui container" style={{minHeight:"100vh"}}>
+            <SEO
+            title={post.title}
+            description={post.content}
+            name="Yasmin Mostoller"
+            type="blog"
+            image={post.image_url}
+            url={`https://yasminmostoller.com/posts/${id}`}
+            />
             <div style={{width: "100%", margin: "auto"}} className="ui centered card">
                 {(post.image_url !== "undefined") && (post.image_url !== null) && (post.image_url !== "null") && 
                     <div className="image">
