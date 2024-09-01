@@ -4,7 +4,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import validates
 from config import db, bcrypt
 from wtforms.validators import ValidationError
-
+from datetime import datetime
 
 
 # Models go here!
@@ -71,7 +71,7 @@ class Painting(db.Model, SerializerMixin):
     folder_id = db.Column(db.Integer, db.ForeignKey('folders.id'))
     folder = db.relationship('Folder', back_populates='paintings')
 
-    serialize_rules = ('-comments.painting', '-folder.paintings')
+    serialize_rules = ('-comments.painting', '-folder.paintings', '-polls.paintings', '-votes')
 
     def __repr__(self):
         return f'<Painting {self.id}>'
@@ -158,3 +158,41 @@ class Folder(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f'<Folder {self.id}>'
+    
+    
+class MailingListEntry(db.Model, SerializerMixin):
+    __tablename__ = 'mailing_list_entries'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+
+    serialize_rules = ('-votes', '-polls')
+
+
+class Poll(db.Model, SerializerMixin):
+    __tablename__ = 'polls'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    start_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    end_date = db.Column(db.DateTime, nullable=False)
+    paintings = db.relationship('Painting', secondary='poll_paintings', backref=db.backref('polls', lazy=True))
+
+    serialize_rules = ('-polls.paintings', '-votes' )
+
+
+class Vote(db.Model, SerializerMixin):
+    __tablename__ = 'votes'
+
+    id = db.Column(db.Integer, primary_key=True)
+    painting_id = db.Column(db.Integer, db.ForeignKey('paintings.id'), nullable=False)
+    poll_id = db.Column(db.Integer, db.ForeignKey('polls.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('mailing_list_entries.id'), nullable=False)
+
+    serialize_rules = ('-painting.votes', '-poll.votes', '-user.votes')
+
+
+poll_paintings = db.Table('poll_paintings',
+    db.Column('poll_id', db.Integer, db.ForeignKey('polls.id'), primary_key=True),
+    db.Column('painting_id', db.Integer, db.ForeignKey('paintings.id'), primary_key=True)
+)

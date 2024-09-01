@@ -31,25 +31,38 @@ const PollAdmin = () => {
     setSelectedPaintings(shuffled.slice(0, 3));
   };
 
-  const handleSubmit = (values, { setSubmitting }) => {
+  const handleSubmit = (values, { setSubmitting, resetForm }) => {
     const data = {
-      start_date: values.start_date,
-      end_date: values.end_date,
-      painting_ids: selectedPaintings.map(p => p.id),
-    };
+        start_date: values.start_date,
+        end_date: values.end_date,
+        painting_ids: selectedPaintings.map(p => p.id),
+      };
 
-    axios.post('/poll', data)
+    axios.post('api/polls/check_dates', { start_date: values.start_date, end_date: values.end_date })
       .then(response => {
-        setSubmissionStatus('Poll created successfully!');
-        setSubmitting(false);
-        setPolls([...polls, response.data]);
+        if (response.data.exists) {
+          alert('A poll is already scheduled for these dates. Please choose different dates.');
+          setSubmitting(false);
+        } else {
+          // Proceed with creating the new poll
+          axios.post('/poll', data)
+            .then(response => {
+              alert('Poll created successfully!');
+              setSubmitting(false);
+              resetForm();
+              setPolls([...polls, response.data]);
+            })
+            .catch(error => {
+              console.error('Error creating poll:', error);
+              setSubmitting(false);
+            });
+        }
       })
       .catch(error => {
-        setSubmissionStatus('Error creating poll.');
+        console.error('Error checking poll dates:', error);
         setSubmitting(false);
       });
   };
-
   const handleDelete = (pollId) => {
     if (window.confirm("Are you sure you want to delete this poll?")) {
     axios.delete(`/poll/${pollId}`)
