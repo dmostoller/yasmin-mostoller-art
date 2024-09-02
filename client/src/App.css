@@ -36,3 +36,39 @@
     transform: rotate(360deg);
   }
 }
+
+
+.floating-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  animation: pulse 2s infinite;
+
+}
+.floating-button .button-text {
+  animation: neon 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+@keyframes neon {
+  0%, 100% {
+    text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px #ff00ff, 0 0 8px #ff00ff, 0 0 10px #ff00ff, 0 0 12px #ff00ff, 0 0 14px #ff00ff, 0 0 16px #ff00ff;
+  }
+  50% {
+    text-shadow: 0 0 2px #fff, 0 0 4px #ff00ff, 0 0 6px #ff00ff, 0 0 8px #ff00ff, 0 0 10px #ff00ff, 0 0 12px #ff00ff, 0 0 14px #ff00ff, 0 0 16px #ff00ff;
+  }
+}
+

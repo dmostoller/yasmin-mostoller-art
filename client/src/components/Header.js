@@ -4,7 +4,6 @@ import { DropdownMenu, Dropdown, Menu, MenuItem } from 'semantic-ui-react'
 import { useDevice } from "../context/device";
 // import { useAdmin } from "../context/admin";
 import Logo from "../assets/logo.jpeg"
-import oldLogo from "../assets/yasi-logo-1.png"
 
 
 function Header({ onLogout}) {

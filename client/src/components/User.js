@@ -84,6 +84,10 @@ export default function User () {
                 <i className="chartline icon"></i>
                 Google Analytics
                 </Link>
+                <Link to="/polladmin" className="ui large teal labeled icon button">
+                    <i className="check circle icon"></i>
+                    Contest Admin Panel
+                </Link>
             </div>
             </div>
             }

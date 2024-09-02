@@ -6,7 +6,6 @@ import { useUser } from "../context/user";
 import { useAdmin } from "../context/admin.js"
 import { Modal } from "semantic-ui-react";
 import PaintingModal from "./PaintingModal";
-import { Watermark } from '@hirohe/react-watermark';
 import axios from "axios";
 import fileDownload from "js-file-download"
 import SEO from './SEO.js';
@@ -75,11 +74,6 @@ function PaintingDetail(){
             <div className="ui horizontal card fluid" style={{marginTop: "100px"}}>
                 <div className="item">
                     <div className="image">
-                    {/* <Watermark 
-                        // textColor="#FFFFFF"
-                        opacity={0.5}
-                        gutter={20}
-                        text="© Yasmin Mostoller"> */}
                         <div>
                         <img className="ui large image" 
                             src={painting.image} 
@@ -88,7 +82,6 @@ function PaintingDetail(){
                             style={{borderRadius:"5px"}}>
                             </img>
                         </div>
-                    {/* </Watermark> */}
                         <Modal
                             open={modalOpen}
                             onClose={handleClose}

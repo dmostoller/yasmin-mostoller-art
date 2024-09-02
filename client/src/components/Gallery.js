@@ -35,7 +35,7 @@ export default function Gallery() {
         return (
             <SwiperSlide>
                 <div className='ui huge image'>
-                    <img className='image' src={painting.image}></img>
+                    <img className='image' alt={painting.title} src={painting.image}></img>
                 </div>
                 <div className="ui left aligned very basic padded segment">
                 <h1 style={{marginBottom: "0px"}}> {painting.title} </h1>
@@ -49,7 +49,7 @@ export default function Gallery() {
     const thumbGallery = paintings.map((painting) => {
         return (
             <SwiperSlide>
-                <img className='ui medium image' src={painting.image}></img>
+                <img className='ui medium image' alt={painting.title} src={painting.image}></img>
             </SwiperSlide>
         )
     })

@@ -19,7 +19,6 @@ function PostDetail(){
     const navigate = useNavigate();
     const [modalOpen, setModalOpen] = useState(false);
     const [videoUrl, setVideoUrl] = useState(null);
-    const [imageUrl, setImageUrl] = useState(null);
 
 
     function handleOpen() {
@@ -35,7 +34,6 @@ function PostDetail(){
         .then((res) => res.json())
         .then((post) => {
             setPost(post)
-            setImageUrl(post.image_url)
             setVideoUrl(post.video_url)
           })
       }, [id]);

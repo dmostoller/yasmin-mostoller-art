@@ -20,13 +20,15 @@ from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from datetime import datetime
 from flask_cors import CORS
+import random
+from sqlalchemy import func
 
 
 # Local imports
 from config import app, db, api, os
 
 # Add your model imports
-from models import User, Painting, Comment, Post, Event, PostComment, Folder
+from models import User, Painting, Comment, Post, Event, PostComment, Folder, Poll, MailingListEntry, Vote, poll_paintings
 
 CORS(app)
 
@@ -451,6 +453,181 @@ class FoldersById(Resource):
 api.add_resource(Folders, "/folder")
 api.add_resource(FoldersById, "/folder/<int:id>")
 
+
+class VoteResource(Resource):
+    def post(self):
+        data = request.get_json()
+        name = data.get('name')
+        email = data.get('email')
+        painting_id = data.get('painting_id')
+
+        user = MailingListEntry.query.filter_by(email=email).first()
+        if not user:
+            user = MailingListEntry(name=name, email=email)
+            db.session.add(user)
+            db.session.commit()
+
+        poll = Poll.query.filter(Poll.start_date <= datetime.utcnow(), Poll.end_date >= datetime.utcnow()).first()
+        if not poll:
+            return {'message': 'No active poll'}, 400
+
+        vote = Vote(painting_id=painting_id, poll_id=poll.id, user_id=user.id)
+        db.session.add(vote)
+        db.session.commit()
+
+        return {'message': 'Vote submitted successfully'}, 201
+api.add_resource(VoteResource, '/vote')
+
+    
+@app.route('/check_vote', methods=['POST'])
+def check_vote():
+    data = request.get_json()
+    email = data.get('email')
+
+    if not email:
+        return jsonify({'error': 'Email is required'}), 400
+
+    try:
+        # Assuming you have a way to get the current poll ID
+        current_poll = Poll.query.filter(Poll.start_date <= datetime.utcnow(), Poll.end_date >= datetime.utcnow()).first()
+
+        if not current_poll:
+            return jsonify({'error': 'No active poll found'}), 404
+
+        # Find the mailing list entry for the given email
+        mailing_list_entry = MailingListEntry.query.filter_by(email=email).first()
+
+        if not mailing_list_entry:
+            return jsonify({'hasVoted': False})  # If the email is not in the mailing list, they haven't voted
+
+        # Check if there is an existing vote for the mailing list entry in the current poll
+        existing_vote = Vote.query.filter_by(user_id=mailing_list_entry.id, poll_id=current_poll.id).first()
+
+        if existing_vote:
+            return jsonify({'hasVoted': True})
+        else:
+            return jsonify({'hasVoted': False})
+    except Exception as e:
+        print(f'Error checking vote: {e}')
+        return jsonify({'error': 'Internal server error'}), 500
+    
+@app.route('/api/polls/check_dates', methods=['POST'])
+def check_dates():
+    data = request.get_json()
+    start_date = datetime.strptime(data.get('start_date'), '%Y-%m-%d')
+    end_date = datetime.strptime(data.get('end_date'), '%Y-%m-%d')
+
+    if not start_date or not end_date:
+        return jsonify({'error': 'Start date and end date are required'}), 400
+
+    try:
+        existing_poll = Poll.query.filter(
+            (Poll.start_date <= end_date) & (Poll.end_date >= start_date)
+        ).first()
+
+        if existing_poll:
+            return jsonify({'exists': True})
+        else:
+            return jsonify({'exists': False})
+    except Exception as e:
+        print(f'Error checking poll dates: {e}')
+        return jsonify({'error': 'Internal server error'}), 500
+
+    
+
+class AdminPollResource(Resource):
+    def get(self):
+        polls = [poll.to_dict() for poll in Poll.query.all()]
+        reponse = make_response(polls, 200)
+        return reponse
+
+    def post(self):
+        data = request.get_json()
+        start_date = datetime.strptime(data['start_date'], '%Y-%m-%d')
+        end_date = datetime.strptime(data['end_date'], '%Y-%m-%d')
+        painting_ids = data['painting_ids']
+
+        new_poll = Poll(start_date=start_date, end_date=end_date)
+        db.session.add(new_poll)
+        db.session.commit()
+
+        for painting_id in painting_ids:
+            db.session.execute(poll_paintings.insert().values(poll_id=new_poll.id, painting_id=painting_id))
+
+        db.session.commit()
+        response = make_response(new_poll.to_dict(), 201)
+
+        return response
+
+
+    def delete(self, poll_id):
+        poll = Poll.query.get(poll_id)
+        if not poll:
+            return jsonify({'message': 'Poll not found'}), 404
+
+        # Delete all related votes
+        Vote.query.filter_by(poll_id=poll_id).delete()
+
+        # Delete the poll
+        db.session.delete(poll)
+        db.session.commit()
+        return jsonify({'message': 'Poll deleted successfully'})
+
+api.add_resource(AdminPollResource, '/poll', '/poll/<int:poll_id>')
+
+
+@app.route('/current_poll', methods=['GET'])
+def get_current_poll():
+    current_date = datetime.utcnow()
+    current_poll = Poll.query.filter(Poll.start_date <= current_date, Poll.end_date >= current_date).first()
+    if current_poll:
+        response = make_response(current_poll.to_dict(), 201)
+    else:
+        response = jsonify({'message': 'No active poll found'}), 404
+    return response
+
+@app.route('/polls', methods=['GET'])
+def get_polls():
+    polls = Poll.query.all()
+    result = []
+    for poll in polls:
+        poll_data = {
+            'id': poll.id,
+            'start_date': poll.start_date.strftime('%Y-%m-%d'),
+            'end_date': poll.end_date.strftime('%Y-%m-%d'),
+            'paintings': []
+        }
+        for painting in poll.paintings:
+            vote_total = db.session.query(func.count(Vote.id)).filter_by(painting_id=painting.id, poll_id=poll.id).scalar()
+            poll_data['paintings'].append({
+                'id': painting.id,
+                'title': painting.title,
+                'image': painting.image,
+                'vote_total': vote_total
+            })
+        result.append(poll_data)
+    return jsonify(result)
+
+
+@app.route('/api/polls/<int:poll_id>/random_vote', methods=['GET'])
+def get_random_vote(poll_id):
+    vote = db.session.query(Vote, MailingListEntry).join(MailingListEntry, Vote.user_id == MailingListEntry.id).filter(Vote.poll_id == poll_id).order_by(func.random()).first()
+    if vote:
+        vote, user = vote
+        return jsonify({
+            'voter_name': user.name,
+            'voter_email': user.email
+        })
+    else:
+        return jsonify({'message': 'No votes found for this poll'}), 404
+
+@app.route('/next_poll_start_date', methods=['GET'])
+def get_next_poll_start_date():
+    next_poll = Poll.query.filter(Poll.start_date > datetime.utcnow()).order_by(Poll.start_date).first()
+    if next_poll:
+        return jsonify({'start_date': next_poll.start_date.isoformat()})
+    else:
+        return jsonify({'message': 'No upcoming polls found'}), 404
 
 
 @app.errorhandler(404)

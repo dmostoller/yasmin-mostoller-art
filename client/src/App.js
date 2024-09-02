@@ -1,11 +1,11 @@
 import './App.css';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './semantic/dist/semantic.min.css'
-import { Routes, Route, useNavigate } from 'react-router-dom';
-
+import { Routes, Route, useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 import { useUser } from "./context/user";
 import { useAdmin } from "./context/admin.js"
-
+import { Button } from 'semantic-ui-react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -34,6 +34,8 @@ import Favicon from "react-favicon";
 import favUrl from './assets/favicon.ico'
 import Blog from './components/Blog.js';
 import Gallery from './components/Gallery.js';
+import PrintPoll from './components/PrintPoll.js';
+import PollAdmin from './components/PollAdmin.js';
 
 
 export default function App() {
@@ -41,6 +43,9 @@ export default function App() {
   const { setIsAdmin } = useAdmin()
   const {setDeviceSize} = useDevice()
   const {setFolders} = useFolders()
+  const [hasActivePoll, setHasActivePoll] = useState(false);
+
+
 
   useEffect(() => {
     const resizeW = () => setDeviceSize(window.innerWidth);
@@ -60,16 +65,13 @@ export default function App() {
     fetch("/check_session").then((r) => {
       if (r.ok) {
         r.json().then((user) => {
-          setUser(user)
-          checkAdminStatus(user);
+          setUser(user);
+          user.is_admin ? setIsAdmin(true) : setIsAdmin(false);
         }
     )}
     });
-  }, []);
-  
-  function checkAdminStatus(user) {
-    user.is_admin ? setIsAdmin(true) : setIsAdmin(false)
-  }
+  }, [setUser, setIsAdmin]);
+
 
   function handleLogin(user) {
     setUser(user);
@@ -84,7 +86,21 @@ export default function App() {
     toast(`Goodbye, thanks for visiting!`);
   }
 
-
+  useEffect(() => {
+    // Fetch the current poll data to check if there is an active poll
+    axios.get('/current_poll')
+      .then(response => {
+        if (response.data.paintings) {
+          setHasActivePoll(true);
+        } else {
+          setHasActivePoll(false);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching current poll:', error);
+        setHasActivePoll(false);
+      });
+  }, []);
 
   return (
     <div className='ui fluid container' style={{minHeight: "100vh"}}>
@@ -114,11 +130,20 @@ export default function App() {
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/blog" element={<Blog/>}/>
                 <Route path="/gallery" element={<Gallery/>}/>
+                <Route path="/poll" element={<PrintPoll/>}/>
+                <Route path='/polladmin' element={<PollAdmin/>}/>
             </Routes>
         </div>
         <div>
             <Footer />
         </div>
+        {hasActivePoll && (
+        <Link to="/poll">
+          <Button className="floating-button" size='huge' circular color="teal">
+            <span className="button-text">🎨 Win a Limited-Edition Print! 🖼️</span>
+          </Button>
+        </Link>
+      )}
     </div>
     
   );

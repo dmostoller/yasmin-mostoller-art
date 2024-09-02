@@ -45,7 +45,7 @@ function PaintingsPage () {
     })
     const searchResults = results
     .filter(painting => {
-        if (forSale == true) {
+        if (forSale === true) {
         return (
             painting.sold !== true
         )
@@ -68,21 +68,17 @@ function PaintingsPage () {
         (searchResults.sort((a, b) => (a.sale_price) > (b.sale_price) ? -1 : 1))
     }
 
-
-    const folderResults = searchResults
-    .filter(painting => {
-            if (selectedFolder !== "none") { 
-                if (painting.folder_id == selectedFolder) {
-                    return (
-                        painting
-                    )
-                }
+    const folderResults = searchResults.filter(painting => {
+        if (selectedFolder !== "none") {
+            if (painting.folder_id === parseInt(selectedFolder, 10)) {
+                console.log(painting.folder_id);
+                return true;  // Return true to include this painting in the filtered results
+            }
+            return false;  // Return false to exclude this painting
         } else {
-            return (
-                painting
-            )
+            return true;  // Return true to include this painting when no folder is selected
         }
-    })
+    });
 
     const addFolder = (newFolder) =>{
         setFolders([...folders, newFolder])
