@@ -8,7 +8,6 @@ import { AdminProvider } from "./context/admin";
 import { DeviceProvider } from './context/device';
 import { FoldersProvider } from './context/folder';
 
-
 import { HelmetProvider } from 'react-helmet-async';
 
 
@@ -18,7 +17,7 @@ const root = ReactDOM.createRoot(container);
 
 root.render(
     <HelmetProvider>
-        <Router basename={process.env.PUBLIC_URL}>
+        <Router>
             <DeviceProvider>
                 <UserProvider>
                     <AdminProvider>
