@@ -37,7 +37,7 @@ const PollAdmin = () => {
 
   const handleRandomSelection = () => {
     const shuffled = [...paintings].sort(() => 0.5 - Math.random());
-    setSelectedPaintings(shuffled.slice(0, 3));
+    setSelectedPaintings(shuffled.slice(0, 6));
   };
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
@@ -138,7 +138,8 @@ const PollAdmin = () => {
               <ErrorMessage name="end_date" component="div" className="ui pointing red basic label" />
             </div>
             </div>
-            <button type="submit" className="ui teal button" disabled={isSubmitting || selectedPaintings.length !== 3}>Create Contest</button>
+            <button type="submit" className="ui teal button" disabled={isSubmitting || selectedPaintings.length !== 6}>Create Contest</button>
+            <button onClick={handleRandomSelection} className="ui teal button" type='button'>Randomly Select 6 Paintings</button>
           </Form>
         )}
       </Formik>
@@ -146,13 +147,12 @@ const PollAdmin = () => {
 
 
     <div className='ui center aligned container'>
-      <button onClick={handleRandomSelection} className="ui teal button">Randomly Select 3 Paintings</button>
     </div>
       
       <h2>Selected Paintings</h2>
-      <Grid centered>
+      <Grid centered stackable>
         {selectedPaintings.map(painting => (
-          <Grid.Column key={painting.id} width={3}>
+          <Grid.Column key={painting.id} width={5}>
             <Card>
               <Image src={painting.image} wrapped ui={false} />
               <Card.Content>

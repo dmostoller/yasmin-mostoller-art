@@ -616,6 +616,17 @@ def get_random_vote(poll_id):
     else:
         return jsonify({'message': 'No votes found for this poll'}), 404
 
+# @app.route('/poll/<int:poll_id>/voters', methods=['GET'])
+# def get_voters(poll_id):
+#     try:
+#         voters = db.session.query(MailingListEntry.name, MailingListEntry.email).join(Vote, MailingListEntry.id == Vote.user_id).filter(Vote.poll_id == poll_id).all()
+#         voter_details = [{'name': voter.name, 'email': voter.email} for voter in voters]
+#         return jsonify(voter_details), 200
+#     except Exception as e:
+#         print(f"Error fetching voters: {e}")
+#         return jsonify({'error': 'Internal server error'}), 500
+    
+
 @app.route('/next_poll_start_date', methods=['GET'])
 def get_next_poll_start_date():
     next_poll = Poll.query.filter(Poll.start_date > datetime.utcnow()).order_by(Poll.start_date).first()
@@ -623,6 +634,7 @@ def get_next_poll_start_date():
         return jsonify({'start_date': next_poll.start_date.isoformat()})
     else:
         return jsonify({'message': 'No upcoming polls found'}), 404
+
 
 
 @app.errorhandler(404)

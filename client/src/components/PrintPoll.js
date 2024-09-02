@@ -158,7 +158,7 @@ const PrintPoll = () => {
               className={selectedPainting === painting.id ? 'selected' : ''}
               color={selectedPainting === painting.id ? 'teal' : null}
             >
-              <Image src={painting.image} ui={false} />
+              <Image src={painting.image}/>
               <Card.Content>
                 <Card.Header>{painting.title}</Card.Header>
               </Card.Content>
