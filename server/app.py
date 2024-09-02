@@ -568,7 +568,7 @@ class AdminPollResource(Resource):
         db.session.commit()
         return jsonify({'message': 'Poll deleted successfully'})
 
-api.add_resource(AdminPollResource, '/poll', '/poll/<int:poll_id>')
+api.add_resource(AdminPollResource, '/api/poll', '/poll/<int:poll_id>')
 
 
 @app.route('/current_poll', methods=['GET'])
@@ -581,7 +581,7 @@ def get_current_poll():
         response = jsonify({'message': 'No active poll found'}), 404
     return response
 
-@app.route('/polls', methods=['GET'])
+@app.route('/api/polls', methods=['GET'])
 def get_polls():
     polls = Poll.query.all()
     result = []

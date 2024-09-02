@@ -29,7 +29,7 @@ const PollAdmin = () => {
       .catch(error => console.error('Error fetching paintings:', error));
 
     // Fetch existing polls from the back-end
-    axios.get('/polls')
+    axios.get('/api/polls')
       .then(response => setPolls(response.data))
       .catch(error => console.error('Error fetching polls:', error));
     //   console.log(polls);
@@ -47,19 +47,20 @@ const PollAdmin = () => {
         painting_ids: selectedPaintings.map(p => p.id),
       };
 
-    axios.post('api/polls/check_dates', { start_date: values.start_date, end_date: values.end_date })
+    axios.post('/api/polls/check_dates', { start_date: values.start_date, end_date: values.end_date })
       .then(response => {
         if (response.data.exists) {
           alert('A poll is already scheduled for these dates. Please choose different dates.');
           setSubmitting(false);
         } else {
           // Proceed with creating the new poll
-          axios.post('/poll', data)
+          axios.post('/api/poll', data)
             .then(response => {
               alert('Poll created successfully!');
               setSubmitting(false);
               resetForm();
               setPolls([...polls, response.data]);
+              setSelectedPaintings([]);
             })
             .catch(error => {
               console.error('Error creating poll:', error);
@@ -86,7 +87,7 @@ const PollAdmin = () => {
 };
 
   const handleRandomVote = (pollId) => {
-    axios.get(`api/polls/${pollId}/random_vote`)
+    axios.get(`/api/polls/${pollId}/random_vote`)
       .then(response => {
         setRandomVote(response.data);
         setSelectedPollId(pollId);
