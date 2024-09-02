@@ -5,7 +5,7 @@ import { Routes, Route, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useUser } from "./context/user";
 import { useAdmin } from "./context/admin.js"
-import { Button, Icon } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -65,16 +65,13 @@ export default function App() {
     fetch("/check_session").then((r) => {
       if (r.ok) {
         r.json().then((user) => {
-          setUser(user)
-          checkAdminStatus(user);
+          setUser(user);
+          user.is_admin ? setIsAdmin(true) : setIsAdmin(false);
         }
     )}
     });
-  }, []);
-  
-  function checkAdminStatus(user) {
-    user.is_admin ? setIsAdmin(true) : setIsAdmin(false)
-  }
+  }, [setUser, setIsAdmin]);
+
 
   function handleLogin(user) {
     setUser(user);

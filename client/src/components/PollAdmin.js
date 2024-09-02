@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Card, Grid, Button, Image } from 'semantic-ui-react';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useAdmin } from '../context/admin';
 
 const PollAdmin = () => {
   const [paintings, setPaintings] = useState([]);
@@ -12,6 +13,14 @@ const PollAdmin = () => {
   const [polls, setPolls] = useState([]);
   const [selectedPollId, setSelectedPollId] = useState(null);
   const [randomVote, setRandomVote] = useState(null);
+  const { isAdmin } = useAdmin();
+  const navigate  = useNavigate();
+
+  useEffect(() => {
+    if (!isAdmin) {
+      navigate('/'); // Redirect to homepage if not an admin
+    }
+  }, [isAdmin, navigate]);
 
   useEffect(() => {
     // Fetch paintings from the back-end
@@ -104,9 +113,9 @@ const PollAdmin = () => {
   return (
     <div style={{marginTop: "110px"}}>
       <Link to="/poll">
-            <Button className="ui right floated circular teal button" >Go to Polls</Button>
+            <Button className="ui right floated circular teal button" >Go to Contest</Button>
           </Link>
-      <h1>Admin: Manage Polls</h1>
+      <h1>Manage Print Contests</h1>
       <Formik
         initialValues={{ start_date: '', end_date: '' }}
         validationSchema={Yup.object({
@@ -118,18 +127,18 @@ const PollAdmin = () => {
         {({ isSubmitting }) => (
           <Form className="ui form">
             <div className='fields'>
-            <div className="three wide field">
+            <div className="field">
               <label htmlFor="start_date">Start Date</label>
               <Field name="start_date" type="date" className="ui input" />
               <ErrorMessage name="start_date" component="div" className="ui pointing red basic label" />
             </div>
-            <div className="three wide field">
+            <div className="field">
               <label htmlFor="end_date">End Date</label>
               <Field name="end_date" type="date" className="ui input" />
               <ErrorMessage name="end_date" component="div" className="ui pointing red basic label" />
             </div>
             </div>
-            <button type="submit" className="ui teal button" disabled={isSubmitting || selectedPaintings.length !== 3}>Create Poll</button>
+            <button type="submit" className="ui teal button" disabled={isSubmitting || selectedPaintings.length !== 3}>Create Contest</button>
           </Form>
         )}
       </Formik>
@@ -137,7 +146,7 @@ const PollAdmin = () => {
 
 
     <div className='ui center aligned container'>
-      <button onClick={handleRandomSelection} className="ui button">Randomly Select 3 Paintings</button>
+      <button onClick={handleRandomSelection} className="ui teal button">Randomly Select 3 Paintings</button>
     </div>
       
       <h2>Selected Paintings</h2>

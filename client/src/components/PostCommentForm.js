@@ -41,7 +41,7 @@ function PostCommentForm({onAddComment, postId, onChangeIsComFormVis, user}){
         <div className="ui text container">
         <form className="ui form" onSubmit={formik.handleSubmit}>  
             <div className="field">
-            <label>Add Comment<a style={{float: "right"}} onClick={onChangeIsComFormVis}>Hide</a></label>
+            <label>Add Comment<i className="close link icon" style={{float: "right"}} onClick={onChangeIsComFormVis}></i></label>
                 <textarea rows="2" type="text" id="comment" name="comment" value={formik.values.comment} placeholder="Your comment here" onChange={formik.handleChange}></textarea>               
                 {formik.errors && <p style={{color:'red', textAlign:'center'}}>{formik.errors.comment}</p>}
             </div>

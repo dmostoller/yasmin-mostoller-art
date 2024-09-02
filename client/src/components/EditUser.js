@@ -76,7 +76,11 @@ if(error) return (
                     <div className="content" style={{padding: "25px"}}>
                         <form className="ui form" type="submit" onSubmit={formik.handleSubmit}>
                             <div className="field">
-                                <label><span style={{float:'left'}}>Update User Details & Password</span><a onClick={setShowEdit} style={{float:'right'}}>Back</a></label>
+                                <label>
+                                    <span style={{float:'left'}}>Update User Details & Password</span>
+                                    {/* <a onClick={setShowEdit} style={{float:'right'}}>Back</a> */}
+                                    <i onClick={setShowEdit} style={{float:'right'}} className="close link icon"></i>
+                                </label>
                                 <input type="text" id="username" name="username" value={formik.values.username} onChange={formik.handleChange}></input>               
                                     {formik.errors && <p style={{color:'red', textAlign:'center'}}>{formik.errors.username}</p>}
                             </div>

@@ -99,11 +99,11 @@ const PrintPoll = () => {
     <div className='ui text container' style={{marginTop: "110px"}}>
     <div>
       <h1>🌟 Cast Your Vote & Win a Limited-Edition Art Print! 🌟</h1>
-      <p>Welcome to our exclusive art contest, where your voice has the power to bring a painting to life as a limited-edition print! We’ve handpicked three of our most captivating pieces, and now it’s up to you to decide which one will be transformed into a collectible work of art.</p>
+      <p>Welcome to my exclusive art contest, where your voice has the power to bring a painting to life as a limited-edition print! I’ve handpicked three of my most captivating pieces, and now it’s up to you to decide which one will be transformed into a collectible work of art.</p>
       { isAdmin && (
       <div className='ui center aligned container'>
         <Link to="/polladmin">
-          <Button color="teal">Poll Admin Panel</Button>
+          <Button color="teal">Contest Admin Panel</Button>
         </Link>
       </div>
       )}
@@ -111,7 +111,7 @@ const PrintPoll = () => {
       <ol>
         <li>
           <strong>Explore the Art:</strong>
-          <p>Take a moment to admire the three paintings we've selected for this contest. Each piece is a unique blend of creativity and emotion, crafted to inspire and captivate.</p>
+          <p>Take a moment to admire the three paintings I've selected for this contest. Each piece is a unique blend of creativity and emotion, crafted to inspire and captivate.</p>
         </li>
         <li>
           <strong>Make Your Choice:</strong>
@@ -138,7 +138,7 @@ const PrintPoll = () => {
       <ol>
         <li>Browse through the selected paintings below.</li>
         <li>Click on your favorite, then enter your name and email adress to cast your vote.</li>
-        <li>Keep an eye on your inbox—we’ll notify you if you’re the lucky winner!</li>
+        <li>Keep an eye on your inbox—I’ll notify you if you’re the lucky winner!</li>
       </ol>
     
     </div>
@@ -146,7 +146,7 @@ const PrintPoll = () => {
    {paintings.length > 0 ? (
     <>
     <h2>Vote Now!</h2>
-      <p>Voting closes soon, so don't miss out on this exciting opportunity to shape our next limited edition print and take home a piece of art that’s as unique as your taste.</p>    
+      <p>Voting closes soon, so don't miss out on this exciting opportunity to shape the next limited edition print and take home a piece of art that’s as unique as your taste.</p>    
 
     <div className='ui center aligned container'>  
     <Grid centered padded stackable>
@@ -206,9 +206,9 @@ const PrintPoll = () => {
       </>
    ): (
         <Segment textAlign='center'>
-          <h2>There Are no Active Polls currently</h2>
+          <h2>There are no active giveaways currently</h2>
           {nextPollStartDate && (
-            <h4 style={{marginTop: "0px"}}>The next poll will start on: {new Date(nextPollStartDate).toLocaleString()}</h4>
+            <h4 style={{marginTop: "0px"}}>The next contest will start on: {new Date(nextPollStartDate).toLocaleString()}</h4>
           )}
         </Segment>
 )}

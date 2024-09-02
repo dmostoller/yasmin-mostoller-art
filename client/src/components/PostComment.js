@@ -20,7 +20,7 @@ function PostComment({username, comment,key, id, date_added, comment_user_id, us
 
             {user && user.id === comment_user_id ? 
                 <div className="actions">
-                <a onClick={handleDeleteComment} className="delete">Delete</a>
+                <i onClick={handleDeleteComment} className="bordered teal trash link icon"></i>
             </div>
             : <></>
             }

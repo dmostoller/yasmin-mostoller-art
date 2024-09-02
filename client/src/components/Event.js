@@ -1,22 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useUser } from "../context/user";
 import { useAdmin } from "../context/admin.js"
-import { Modal } from "semantic-ui-react";
-import EventModal from "./EventModal.js";
+
 
 export default function Event ({id, name, venue, location, details, image_url, event_date, event_link, onDeleteEvent}) {
     const { user } = useUser()
     const { isAdmin } = useAdmin()
-    const [modalOpen, setModalOpen] = useState(false);
-
-    function handleOpen() {
-        setModalOpen(true)
-    } 
-
-    function handleClose() {
-        setModalOpen(false)
-    } 
 
     const handleDeleteEvent = (event) => {
         if (window.confirm("Are you sure you want to delete this event?")) {
@@ -32,21 +22,6 @@ export default function Event ({id, name, venue, location, details, image_url, e
     return (
         <div className="ui container fluid">
             <div className="ui horizontal card fluid" style={{marginBottom: "15px"}}>
-                {/* <div className="item">
-                    <img className='ui large image' 
-                    src={image_url} 
-                    alt={name} 
-                    onClick={handleOpen}
-                    >
-                    </img>
-                        <Modal
-                            open={modalOpen}
-                            onClose={handleClose}
-                            basic={true}
-                            >
-                            <EventModal image={image_url} name={name}/>
-                        </Modal>
-                </div> */}
                 <div className="content" style={{padding: "25px"}}>
                     <div className="header">{name}</div>
                     <div className="meta">{event_date}</div> 

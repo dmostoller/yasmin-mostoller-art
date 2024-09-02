@@ -86,7 +86,7 @@ export default function User () {
                 </Link>
                 <Link to="/polladmin" className="ui large teal labeled icon button">
                     <i className="check circle icon"></i>
-                    Poll Admin Panel
+                    Contest Admin Panel
                 </Link>
             </div>
             </div>
