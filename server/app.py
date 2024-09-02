@@ -8,13 +8,8 @@ from flask import (
     jsonify,
     request,
     session,
-    redirect,
     render_template,
-    send_from_directory,
-    url_for,
-    flash,
 )
-from werkzeug.utils import secure_filename
 from werkzeug.exceptions import NotFound, Unauthorized, UnprocessableEntity
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
