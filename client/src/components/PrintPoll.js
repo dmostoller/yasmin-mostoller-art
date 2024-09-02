@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import { useAdmin } from '../context/admin';
+// import { useAdmin } from '../context/admin';
 import { Card, Grid, Button, Image, Segment, Modal, Icon } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 
 
 const PrintPoll = () => {
   const [selectedPainting, setSelectedPainting] = useState(null);
   const [paintings, setPaintings] = useState([]);
-  const {isAdmin} = useAdmin();
+  // const {isAdmin} = useAdmin();
   const [nextPollStartDate, setNextPollStartDate] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalImage, setModalImage] = useState('');
@@ -100,13 +100,13 @@ const PrintPoll = () => {
     <div>
       <h1>🌟 Cast Your Vote & Win a Limited-Edition Art Print! 🌟</h1>
       <p>Welcome to my exclusive art contest, where your voice has the power to bring a painting to life as a limited-edition print! I’ve handpicked three of my most captivating pieces, and now it’s up to you to decide which one will be transformed into a collectible work of art.</p>
-      { isAdmin && (
+      {/* { isAdmin && (
       <div className='ui center aligned container'>
         <Link to="/polladmin">
           <Button color="teal">Contest Admin Panel</Button>
         </Link>
       </div>
-      )}
+      )} */}
       <h2>How It Works:</h2>
       <ol>
         <li>

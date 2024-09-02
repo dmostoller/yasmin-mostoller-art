@@ -140,7 +140,7 @@ export default function App() {
         {hasActivePoll && (
         <Link to="/poll">
           <Button className="floating-button" size='huge' circular color="teal">
-            <span className="button-text">🎨 Win a Limited-Edition Print! 🖼️</span>
+            <span className="button-text">🎨 Vote & Win Art! 🖼️</span>
           </Button>
         </Link>
       )}
